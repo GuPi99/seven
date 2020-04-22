@@ -70,7 +70,7 @@
 				var form=layui.form;
 				var url='${pageContext.request.contextPath}/sevenDailyPlan/getSelectDay?id='+id;
 				form.on('submit(formDemo)',function(){
-				     $("#open",parent.document).attr('src','${pageContext.request.contextPath}/sevenDailyPlan/selfIndex?type=1');
+				     $("#open",parent.document).attr('src','${pageContext.request.contextPath}/sevenDailyPlan/selfDay');
 				     return false;
 				})
 				$.ajax({
