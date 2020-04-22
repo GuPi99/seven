@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevenprojectbill.mapper.SevenProjectBillMapper" >
+  <resultMap id="BaseResultMap" type="com.ally.sevenprojectbill.bean.SevenProjectBill" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="pb_pid" property="pbPid" jdbcType="INTEGER" />
+    <result column="pb_time" property="pbTime" jdbcType="TIMESTAMP" />
+    <result column="pb_state" property="pbState" jdbcType="INTEGER" />
+    <result column="pb_branch_time" property="pbBranchTime" jdbcType="TIMESTAMP" />
+    <result column="pb_director_time" property="pbDirectorTime" jdbcType="TIMESTAMP" />
+    <result column="pb_manager_time" property="pbManagerTime" jdbcType="TIMESTAMP" />
+    <result column="pb_branch" property="pbBranch" jdbcType="LONGVARCHAR" />
+    <result column="pb_director" property="pbDirector" jdbcType="LONGVARCHAR" />
+    <result column="pb_manager" property="pbManager" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ally.sevenprojectbill.bean.SevenProjectBill" >
+    insert into seven_project_bill (id, pb_pid, pb_time, pb_state)
+    values (#{id,jdbcType=INTEGER}, #{pbPid,jdbcType=INTEGER}, #{pbTime,jdbcType=TIMESTAMP}, 
+      #{pbState,jdbcType=INTEGER})
+  </insert>
+   <select id="selectSevenProjectBill" resultMap="BaseResultMap" >
+    select id, pb_pid, pb_time, pb_state, pb_branch_time, pb_director_time, pb_manager_time, 
+    pb_branch, pb_director, pb_manager
+    from seven_project_bill
+    where pb_pid=#{pbPid}
+  </select>
+  <update id="addBranch" parameterType="com.ally.sevenprojectbill.bean.SevenProjectBill" >
+    update seven_project_bill
+    set 
+      pb_state = #{pbState,jdbcType=INTEGER},
+      pb_branch_time = #{pbBranchTime,jdbcType=TIMESTAMP},
+      pb_branch = #{pbBranch,jdbcType=LONGVARCHAR}
+    where pb_pid = #{pbPid,jdbcType=INTEGER}
+  </update>
+   <update id="addDirector" parameterType="com.ally.sevenprojectbill.bean.SevenProjectBill" >
+    update seven_project_bill
+    set 
+      pb_state = #{pbState,jdbcType=INTEGER},
+      pb_director_time = #{pbDirectorTime,jdbcType=TIMESTAMP},
+      pb_director = #{pbDirector,jdbcType=LONGVARCHAR}
+    where pb_pid = #{pbPid,jdbcType=INTEGER}
+  </update>
+  <update id="addManger" parameterType="com.ally.sevenprojectbill.bean.SevenProjectBill" >
+    update seven_project_bill
+    set 
+      pb_state = #{pbState,jdbcType=INTEGER},
+      pb_manager_time = #{pbManagerTime,jdbcType=TIMESTAMP},
+      pb_manager = #{pbManager,jdbcType=LONGVARCHAR}
+    where pb_pid = #{pbPid,jdbcType=INTEGER}
+  </update>
+</mapper>

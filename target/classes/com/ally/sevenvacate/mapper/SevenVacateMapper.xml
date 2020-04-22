@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevenvacate.mapper.SevenVacateMapper">
+	<resultMap id="BaseResultMap" type="com.ally.sevenvacate.bean.SevenVacate">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="v_sid" property="vSid" jdbcType="INTEGER" />
+		<result column="v_start" property="vStart" jdbcType="DATE" />
+		<result column="v_end" property="vEnd" jdbcType="DATE" />
+		<result column="v_apply_time" property="vApplyTime" jdbcType="TIMESTAMP" />
+		<result column="v_sate" property="vSate" jdbcType="INTEGER" />
+		<result column="v_branch_time" property="vBranchTime" jdbcType="TIMESTAMP" />
+		<result column="v_director_time" property="vDirectorTime"
+			jdbcType="TIMESTAMP" />
+		<result column="v_manager_time" property="vManagerTime"
+			jdbcType="TIMESTAMP" />
+		<result column="v_reason" property="vReason" jdbcType="LONGVARCHAR" />
+		<result column="v_branch" property="vBranch" jdbcType="LONGVARCHAR" />
+		<result column="v_director" property="vDirector" jdbcType="LONGVARCHAR" />
+		<result column="v_manager" property="vManager" jdbcType="LONGVARCHAR" />
+		<result column="v_url" property="vUrl" jdbcType="VARCHAR"/>
+		<result column="v_file_name" property="vFileName" jdbcType="VARCHAR"/>
+		<result column="v_type" property="vType" jdbcType="VARCHAR"/>
+	</resultMap>
+	<insert id="insert" parameterType="com.ally.sevenvacate.bean.SevenVacate">
+		insert into seven_vacate (id, v_sid, v_start,
+		v_end, v_apply_time, v_sate,
+		v_reason, v_url,v_file_name,v_type)
+		values (#{id,jdbcType=INTEGER}, #{vSid,jdbcType=INTEGER},
+		#{vStart,jdbcType=DATE},
+		#{vEnd,jdbcType=DATE}, #{vApplyTime,jdbcType=TIMESTAMP}, #{vSate,jdbcType=INTEGER},
+		#{vReason,jdbcType=LONGVARCHAR},#{vUrl,jdbcType=VARCHAR},#{vFileName,jdbcType=VARCHAR},#{vType,jdbcType=VARCHAR} )
+	</insert>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select id, v_sid, v_start, v_end, v_apply_time, v_sate, v_branch_time,
+		v_director_time,
+		v_manager_time, v_reason, v_branch, v_director, v_manager,v_url,v_file_name,v_type
+		from seven_vacate
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="getSevenVacatetList" resultMap="BaseResultMap">
+		select id, v_sid, v_start, v_end, v_apply_time, v_sate, v_branch_time,
+		v_director_time,
+		v_manager_time, v_reason, v_branch, v_director, v_manager,v_url,v_file_name,v_type
+		from seven_vacate
+		<where>
+			<if test="vSid != null">
+				v_sid = #{vSid}
+			</if>
+			<if test="vSate != null">
+				and v_sate = #{vSate}
+			</if>
+			<if test="vStart != null and vStart != ''">
+				and v_start like #{vStart}
+			</if>
+			<if test="vEnd != null and vEnd != ''">
+				and v_end like #{vEnd}
+			</if>
+		</where>
+		order by id desc
+	</select>
+	<update id="addBranch" parameterType="com.ally.sevenvacate.bean.SevenVacate">
+		update seven_vacate
+		set 
+		v_sate = #{vSate,jdbcType=INTEGER},
+		v_branch_time = #{vBranchTime,jdbcType=TIMESTAMP},
+		v_branch = #{vBranch,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="addDirector" parameterType="com.ally.sevenvacate.bean.SevenVacate">
+		update seven_vacate
+		set 
+		v_sate = #{vSate,jdbcType=INTEGER},
+		v_director_time = #{vDirectorTime,jdbcType=TIMESTAMP},
+		v_director = #{vDirector,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="addManger" parameterType="com.ally.sevenvacate.bean.SevenVacate">
+		update seven_vacate
+		set 
+		v_sate = #{vSate,jdbcType=INTEGER},
+		v_manager_time = #{vManagerTime,jdbcType=TIMESTAMP},
+		v_manager = #{vManager,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

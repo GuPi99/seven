@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevendailyplan.mapper.SevenDailyPlanMapper" >
+  <resultMap id="BaseResultMap" type="com.ally.sevendailyplan.bean.SevenDailyPlan" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="dp_sid" property="dpSid" jdbcType="INTEGER" />
+    <result column="dp_date" property="dpDate" jdbcType="VARCHAR" />
+    <result column="dp_type" property="dpType" jdbcType="INTEGER" />
+    <result column="dp_work" property="dpWork" jdbcType="LONGVARCHAR" />
+    <result column="dp_where" property="dpWhere" jdbcType="INTEGER" />
+    <result column="dp_eid" property="dpEid" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from seven_daily_plan
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ally.sevendailyplan.bean.SevenDailyPlan" >
+    insert into seven_daily_plan (id, dp_sid, dp_date, 
+      dp_type, dp_work,dp_where,dp_eid)
+    values (#{id,jdbcType=INTEGER}, #{dpSid,jdbcType=INTEGER}, #{dpDate,jdbcType=VARCHAR}, 
+      #{dpType,jdbcType=INTEGER}, #{dpWork,jdbcType=LONGVARCHAR}, #{dpWhere,jdbcType=INTEGER}, #{dpEid,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.ally.sevendailyplan.bean.SevenDailyPlan" >
+    update seven_daily_plan
+    set dp_sid = #{dpSid,jdbcType=INTEGER},
+      dp_date = #{dpDate,jdbcType=VARCHAR},
+      dp_type = #{dpType,jdbcType=INTEGER},
+      dp_work = #{dpWork,jdbcType=LONGVARCHAR},
+      dp_where = #{dpWhere,jdbcType=INTEGER},
+      dp_eid = #{dpEid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, dp_sid, dp_date, dp_type, dp_work
+    from seven_daily_plan
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+   <select id="getSevenDailyPlanList" resultMap="BaseResultMap" >
+    select id, dp_sid, dp_date, dp_type, dp_work,dp_where,dp_eid
+    from seven_daily_plan
+    <where>
+    	<if test="dpSid != null">
+    		dp_sid = #{dpSid}
+    	</if>
+    	<if test="dpType != null">
+    		and dp_type = #{dpType}
+    	</if>
+    	<if test="dpDate != null and dpDate != ''">
+    		and dp_date like #{dpDate}
+    	</if>
+    </where>
+    order by id desc
+  </select>
+  <select id="getSelfDayList" resultMap="BaseResultMap" >
+    select id, dp_sid, dp_date, dp_type, dp_work,dp_where,dp_eid
+    from seven_daily_plan
+    <where>
+    		dp_sid = #{dpSid} and dp_type=1
+    	<if test="dpWhere != null">
+    		and dp_where = #{dpWhere}
+    	</if>
+    	<if test="dpDate != null and dpDate != ''">
+    		and dp_date like #{dpDate}
+    	</if>
+    </where>
+    order by id desc
+  </select>
+   <select id="getSelfWeekList" resultMap="BaseResultMap" >
+    select id, dp_sid, dp_date, dp_type, dp_work,dp_where,dp_eid
+    from seven_daily_plan
+    <where>
+    		dp_sid = #{dpSid} and dp_type=2
+    	<if test="dpWhere != null">
+    		and dp_where = #{dpWhere}
+    	</if>
+    	<if test="dpDate != null and dpDate != ''">
+    		and dp_date like #{dpDate}
+    	</if>
+    </where>
+    order by id desc
+  </select>
+</mapper>

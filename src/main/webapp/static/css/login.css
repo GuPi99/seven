@@ -1,0 +1,187 @@
+html,body{
+	padding: 0;
+	margin: 0;
+}
+
+@font-face {
+	font-family: 'neo';
+	src: url(${pageContext.request.contextPath}/static/img/fonts/NEOTERICc.ttf);
+}
+
+#zyc_login{
+	background: url(${pageContext.request.contextPath}/static/img/backdrop.png) no-repeat;
+	background-size: 100% 100%;
+	width: 100%;
+	height: 100%;
+}
+
+#zyc_login_form{
+	width: 400px;
+	background: #fff;
+	position: absolute;
+	right: 50%;
+	margin-right: -200px;
+	top: 50%;
+	border-radius: 3px;
+	padding: 30px;
+	text-align: center;
+	font-weight: 600;
+	font-family: 'neo';
+	color: #fff;
+}
+
+#zyc_login_form .zyc_title{
+	margin-bottom: 30px;
+}
+
+#zyc_login_form .zyc_title i{
+	font-style: normal;
+	font-size: 24px;
+}
+
+#zyc_login_form .zyc_float>.zyc_tag{
+	padding-top: 10px;
+	padding-left: 10px;
+}
+
+#zyc_login_form .zyc_float>div:last-child{
+	padding-left: 10px;
+	width: 340px;
+}
+
+#zyc_login_form .zyc_float .zyc_tag i{
+	font-size: 20px;
+	color: #333;
+}
+
+#zyc_login_form .zyc_float{
+	height: 45px;
+	background-color: #fff;
+	margin: 25px 10px;
+	border-radius: 3px;
+	border-bottom: 1px solid #eee;
+}
+
+#zyc_login_form>.zyc_form>div.zyc_float:last-of-type{
+	height: 100% !important;
+	background: rgba(0,0,0,0) !important;
+	margin-bottom: 0;
+}
+
+#zyc_login_form>.zyc_form>div.zyc_float:last-of-type button{
+	width: 100%;
+}
+
+#zyc_login_form .zyc_float input{
+	line-height: 28px !important;
+	width: 100% !important;
+	min-width: 0;
+}
+
+#zyc_verify{
+	background-color: rgba(0,0,0,0) !important;
+}
+
+#zyc_verify>div.zyc_left:first-child{
+	width: 200px;
+	padding-left: 10px;
+	margin-right: 10px;
+	background-color: #fff;
+	border-radius: 3px;
+	overflow: hidden;
+}
+
+#zyc_verify>div.zyc_left:first-child~div.zyc_left{
+	width: calc(100% - 220px) !important;
+	padding-left: 0 !important;
+	border-radius: 3px;
+	overflow: hidden;
+	background: rgba(0,0,0,0.6);
+	height: 100%;
+}
+
+#zyc_verify>div.zyc_left:first-child~div.zyc_left img{
+	width: 90%;
+	height: 36px;
+	border-radius: 5px;
+}
+
+#zyc_label,
+#zyc_version{
+	font-family: '微软雅黑';
+	font-size: 14px;
+	font-weight: 400;
+	width: 50% !important;
+	margin-top: 15px;
+} 
+
+#zyc_label .zyc_checkbox,
+#zyc_version{
+	padding-left: 0 !important;
+}
+
+#zyc_foot{
+	background-color: #1d2139;
+	border: none;
+}
+
+#zyc_logo{
+	font-size: 20px;
+	color: #fff;
+	padding: 15px 0 0 10%;
+}
+
+#zyc_logo img{
+	width: 50px;
+	height: 50px;
+	vertical-align: middle;
+}
+
+#zyc_logo span:nth-of-type(1){
+	position: relative;
+	padding: 0 8px;
+	font-family: 'neo';
+}
+
+#zyc_logo span:nth-of-type(1):after{
+	content: '';
+	width: 1px;
+	height: 15px;
+	background-color: #fff;
+	position: absolute;
+	top: 7px;
+	right: -4px;
+}
+
+#zyc_logo span:nth-of-type(2){
+	font-family: 'neo';
+	padding: 0 10px;
+	font-size: 14px;
+	letter-spacing: 1.5px;
+}
+
+@media (min-width:768px) {
+	#zyc_login_form{
+		top: 22%;
+	}
+}
+
+#zyc_login_btn{
+	height: 45px;
+	line-height: 45px;
+	padding: 0;
+	width: 100%;
+}
+.formBlock{
+	position: relative;
+}
+.formTop {
+	position: absolute;
+	width: 130px;
+	right: 50%;
+	top:-51px;
+	margin-right: -65px;
+}
+.formTop img{
+	display: block;
+}

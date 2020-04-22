@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevenbank.mapper.SevenBankMapper">
+	<resultMap id="BaseResultMap" type="com.ally.sevenbank.bean.SevenBank">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="b_name" property="bName" jdbcType="VARCHAR" />
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from seven_bank
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.ally.sevenbank.bean.SevenBank">
+		insert into seven_bank (id, b_name)
+		values (#{id,jdbcType=INTEGER}, #{bName,jdbcType=VARCHAR})
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="com.ally.sevenbank.bean.SevenBank">
+		update seven_bank
+		set b_name = #{bName,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select id, b_name
+		from seven_bank
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, b_name
+		from seven_bank
+	</select>
+	<select id="getSevenBankList" resultMap="BaseResultMap">
+		select id, b_name
+		from seven_bank
+		<where>
+			<if test="bName != null and bName != ''">
+				b_name like '%'#{bName}'%'
+			</if>
+		</where>
+		order by id desc
+	</select>
+</mapper>

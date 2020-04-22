@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevengoods.mapper.SevenGoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.ally.sevengoods.bean.SevenGoods" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="g_cid" property="gCid" jdbcType="INTEGER" />
+    <result column="g_name" property="gName" jdbcType="VARCHAR" />
+    <result column="g_model" property="gModel" jdbcType="VARCHAR" />
+    <result column="g_gid" property="gGid" jdbcType="INTEGER" />
+    <result column="g_describe" property="gDescribe" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from seven_goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ally.sevengoods.bean.SevenGoods" >
+    insert into seven_goods (id, g_cid, g_name, 
+      g_model, g_gid, g_describe
+      )
+    values (#{id,jdbcType=INTEGER}, #{gCid,jdbcType=INTEGER}, #{gName,jdbcType=VARCHAR}, 
+      #{gModel,jdbcType=VARCHAR}, #{gGid,jdbcType=INTEGER}, #{gDescribe,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.ally.sevengoods.bean.SevenGoods" >
+    update seven_goods
+    set g_cid = #{gCid,jdbcType=INTEGER},
+      g_name = #{gName,jdbcType=VARCHAR},
+      g_model = #{gModel,jdbcType=VARCHAR},
+      g_gid = #{gGid,jdbcType=INTEGER},
+      g_describe = #{gDescribe,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, g_cid, g_name, g_model, g_gid, g_describe
+    from seven_goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, g_cid, g_name, g_model, g_gid, g_describe
+    from seven_goods
+  </select>
+  <select id="getSevenGoodsList" resultMap="BaseResultMap" >
+    select id, g_cid, g_name, g_model, g_gid, g_describe
+    from seven_goods
+    <where>
+			<if test="gCid != null and gCid != ''">
+				m_mid=#{gCid}
+			</if>
+			<if test="gName != null and gName != ''">
+				and g_name like #{gName}
+			</if>
+		</where>
+  </select>
+  <select id="selectAllName" resultMap="BaseResultMap" >
+    select id,  g_name
+    from seven_goods
+  </select>
+  <insert id="batchAddition">
+    insert into seven_goods(g_cid, g_name, g_model, g_gid, g_describe) values 
+    <foreach collection="list"  item="sevenGoods" separator=",">
+      (#{sevenGoods.gCid},#{sevenGoods.gName},#{sevenGoods.gModel},#{sevenGoods.gGid},#{sevenGoods.gDescribe})
+    </foreach>
+  </insert>
+   <select id="selectUnder" resultMap="BaseResultMap" >
+    select id, g_cid, g_name, g_model, g_gid, g_describe
+    from seven_goods
+    where g_gid=#{id}
+  </select>
+  <select id="selectGoods" resultMap="BaseResultMap" >
+    select id, g_cid, g_name, g_model, g_gid, g_describe
+    from seven_goods
+    where g_cid=#{id}
+  </select>
+  <select id="selectName" resultType="java.lang.String" >
+    select g_name from seven_goods
+    where id = #{productId}
+  </select>
+</mapper>

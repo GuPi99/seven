@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevenvisit.mapper.SevenVisitMapper">
+	<resultMap id="BaseResultMap" type="com.ally.sevenvisit.bean.SevenVisit">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="v_eid" property="vEid" jdbcType="INTEGER" />
+		<result column="firm_name" property="firmName" jdbcType="VARCHAR" />
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from seven_visit
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.ally.sevenvisit.bean.SevenVisit">
+		insert into seven_visit (id, v_eid, firm_name
+		)
+		values (#{id,jdbcType=INTEGER}, #{vEid,jdbcType=INTEGER},
+		#{firmName,jdbcType=VARCHAR}
+		)
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="com.ally.sevenvisit.bean.SevenVisit">
+		update seven_visit
+		set v_eid = #{vEid,jdbcType=INTEGER},
+		firm_name = #{firmName,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select id, v_eid, firm_name
+		from seven_visit
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, v_eid, firm_name
+		from seven_visit
+	</select>
+	<select id="getSevenVisitList" resultMap="BaseResultMap">
+		select id, v_eid, firm_name
+		from seven_visit
+		<where>
+			<if test="vEid != null and vEid != 0">
+				v_eid = #{vEid}
+			</if>
+		</where>
+		order by id desc
+	</select>
+</mapper>

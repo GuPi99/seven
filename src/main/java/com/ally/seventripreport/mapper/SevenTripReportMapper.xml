@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.seventripreport.mapper.SevenTripReportMapper" >
+  <resultMap id="BaseResultMap" type="com.ally.seventripreport.bean.SevenTripReport" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="tr_eid" property="trEid" jdbcType="INTEGER" />
+    <result column="tr_date" property="trDate" jdbcType="DATE" />
+    <result column="tr_end" property="trEnd" jdbcType="DATE" />
+    <result column="tr_content" property="trContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ally.seventripreport.bean.SevenTripReport" >
+    insert into seven_trip_report (id, tr_eid, tr_date, 
+      tr_end, tr_content)
+    values (#{id,jdbcType=INTEGER}, #{trEid,jdbcType=INTEGER}, #{trDate,jdbcType=DATE}, 
+      #{trEnd,jdbcType=DATE}, #{trContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <select id="getSevenTripReportList" resultMap="BaseResultMap" >
+   select id, tr_eid, tr_date, tr_end, tr_content
+    from seven_trip_report
+    <where>
+    	<if test="trEid != null and trEid != 0" >
+    	tr_eid = #{trEid}
+    	</if>
+    </where>
+    order by id desc
+  </select>
+  <select id="selectTripReport" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, tr_eid, tr_date, tr_end, tr_content
+    from seven_trip_report
+    where tr_eid = #{trEid}
+  </select>
+</mapper>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevenprojectgoods.mapper.SevenProjectGoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.ally.sevenprojectgoods.bean.SevenProjectGoods" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="pg_pid" property="pgPid" jdbcType="INTEGER" />
+    <result column="pg_cid" property="pgCid" jdbcType="INTEGER" />
+    <result column="pg_gid" property="pgGid" jdbcType="INTEGER" />
+    <result column="ps_name" property="psName" jdbcType="VARCHAR" />
+    <result column="pg_model" property="pgModel" jdbcType="VARCHAR" />
+    <result column="pg_num" property="pgNum" jdbcType="INTEGER" />
+    <result column="pg_note" property="pgNote" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from seven_project_goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ally.sevenprojectgoods.bean.SevenProjectGoods" >
+    insert into seven_project_goods (id, pg_pid, pg_cid, 
+      pg_gid, ps_name, pg_model, 
+      pg_num, pg_note)
+    values (#{id,jdbcType=INTEGER}, #{pgPid,jdbcType=INTEGER}, #{pgCid,jdbcType=INTEGER}, 
+      #{pgGid,jdbcType=INTEGER}, #{psName,jdbcType=VARCHAR}, #{pgModel,jdbcType=VARCHAR}, 
+      #{pgNum,jdbcType=INTEGER}, #{pgNote,jdbcType=LONGVARCHAR})
+  </insert>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, pg_pid, pg_cid, pg_gid, ps_name, pg_model, pg_num, pg_note
+    from seven_project_goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+ <select id="getSevenProjectGoodsList" resultMap="BaseResultMap" >
+    select id, pg_pid, pg_cid, pg_gid, ps_name, pg_model, pg_num, pg_note
+    from seven_project_goods
+    <where>
+    	<if test="pgPid != null">
+    		pg_pid=#{pgPid}
+    	</if>
+    </where>
+    order by id desc
+  </select>
+</mapper>

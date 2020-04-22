@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevenstaff.mapper.SevenStaffMapper">
+	<resultMap id="BaseResultMap" type="com.ally.sevenstaff.bean.SevenStaff">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="s_name" property="sName" jdbcType="VARCHAR" />
+		<result column="s_sex" property="sSex" jdbcType="INTEGER" />
+		<result column="s_date_birth" property="sDateBirth" jdbcType="VARCHAR" />
+		<result column="s_phone" property="sPhone" jdbcType="VARCHAR" />
+		<result column="s_email" property="sEmail" jdbcType="VARCHAR" />
+		<result column="s_address" property="sAddress" jdbcType="VARCHAR" />
+		<result column="s_state" property="sState" jdbcType="INTEGER" />
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		seven_staff
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.ally.sevenstaff.bean.SevenStaff">
+		insert into seven_staff (id,
+		s_name, s_sex,
+		s_date_birth, s_phone, s_email,
+		s_address, s_state)
+		values (#{id,jdbcType=INTEGER}, #{sName,jdbcType=VARCHAR},
+		#{sSex,jdbcType=INTEGER},
+		#{sDateBirth,jdbcType=VARCHAR},
+		#{sPhone,jdbcType=VARCHAR}, #{sEmail,jdbcType=VARCHAR},
+		#{sAddress,jdbcType=VARCHAR}, #{sState,jdbcType=INTEGER})
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="com.ally.sevenstaff.bean.SevenStaff">
+		update seven_staff
+		set s_name = #{sName,jdbcType=VARCHAR},
+		s_sex =#{sSex,jdbcType=INTEGER},
+		s_date_birth =#{sDateBirth,jdbcType=VARCHAR},
+		s_phone = #{sPhone,jdbcType=VARCHAR},
+		s_email = #{sEmail,jdbcType=VARCHAR},
+		s_address =#{sAddress,jdbcType=VARCHAR},
+		s_state = #{sState,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateSevenStaffState" parameterType="java.lang.Integer">
+		update
+		seven_staff
+		set s_state = #{sState}
+		where id =
+		#{id}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select id, s_name, s_sex, s_date_birth, s_phone,
+		s_email, s_address, s_state
+		from seven_staff
+		where id =
+		#{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, s_name, s_sex,
+		s_date_birth, s_phone, s_email, s_address, s_state
+		from seven_staff
+	</select>
+	<select id="selectName" resultType="java.lang.String">
+		SELECT s_name FROM
+		seven_staff where id=#{1}
+	</select>
+	<select id="getSevenStaffList" resultMap="BaseResultMap">
+		select id, s_name, s_sex, s_date_birth, s_phone, s_email, s_address,
+		s_state
+		from seven_staff
+		<where>
+			<if test="sSex != null">
+				s_sex=#{sSex}
+			</if>
+			<if test="sName != null and sName !=''">
+				and s_name like #{sName}
+			</if>
+			<if test="sDateBirth != null and sDateBirth !=''">
+				and s_date_birth like #{sDateBirth}
+			</if>
+		</where>
+	</select>
+	<select id="selectNoAccount" resultMap="BaseResultMap">
+		select id, s_name
+		from seven_staff where id not in (select a_sid from seven_account)
+	</select>
+	<select id="getBookList" resultMap="BaseResultMap">
+		select id, s_name, s_phone, s_email
+		from seven_staff
+		<where>
+			<if test="sName != null and sName !=''">
+				and s_name like #{sName}
+			</if>
+		</where>
+	</select>
+</mapper>

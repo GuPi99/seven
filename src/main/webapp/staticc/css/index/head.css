@@ -1,0 +1,81 @@
+.left{
+				float: left;
+			}
+			.right{
+				float: right;
+			}
+			.clear{
+				clear: both;
+			}
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			a{
+				text-decoration: none;
+			}
+			li{
+				list-style:none
+			}
+			.header{
+				height: 36px;
+				line-height: 36px;
+				background: #E3E3E3;
+				padding: 5px 0;
+			}
+			.iconBlock{
+				padding-left: 20px;
+				padding-right: 10px;
+			}
+			.icon-shezhi{
+				font-size: 24px;
+				color: #0183E6;
+			}
+			.layui-input-block{
+				min-height: 28px;
+				height: 28px;
+				margin-left: 110px;
+			}
+			.layui-form-label{
+				padding-top: 4px;
+				padding-bottom: 4px;
+			}
+			.inputBlock .layui-input-block {
+				width: 360px;
+			}
+			.layui-form-item input{
+				height: 28px;
+				width: 360px;
+				margin: 30px 0;
+			}
+			.addBtn{
+				margin-left: 110px;
+			}
+			.addBtn .layui-btn{
+				height: 28px;
+				line-height: 28px;
+				border-radius: 8px;
+				width: 100px;
+			}
+			.layui-input-block button{
+				height: 28px;
+				line-height: 28px;
+				border-radius: 8px;
+			}
+			.headImg{
+				width: 80px;
+				height: 80px;
+				border: 1px solid #eee;
+				border-radius: 40px;
+				display: block;
+				/* background: #000000; */
+				margin-left: 50px;
+				overflow: hidden;
+			}
+			.headImg img{
+				width: 100%;
+				height: 100%;
+			}
+			.layui-form{
+				margin-top: 30px;
+			}

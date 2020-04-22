@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevenevection.mapper.SevenEvectionMapper">
+	<resultMap id="BaseResultMap" type="com.ally.sevenevection.bean.SevenEvection">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="e_sid" property="eSid" jdbcType="INTEGER" />
+		<result column="e_goal" property="eGoal" jdbcType="LONGVARCHAR" />
+		<result column="e_apply_time" property="eApplyTime" jdbcType="TIMESTAMP" />
+		<result column="e_state" property="eState" jdbcType="INTEGER" />
+		<result column="e_branch_time" property="eBranchTime" jdbcType="TIMESTAMP" />
+		<result column="e_director_time" property="eDirectorTime"
+			jdbcType="TIMESTAMP" />
+		<result column="e_manager" property="eManager" jdbcType="LONGVARCHAR" />
+		<result column="e_manager_time" property="eManagerTime"
+			jdbcType="TIMESTAMP" />
+		<result column="e_branch" property="eBranch" jdbcType="LONGVARCHAR" />
+		<result column="e_director" property="eDirector" jdbcType="LONGVARCHAR" />
+		<result column="e_text" property="eText" jdbcType="LONGVARCHAR" />
+		<result column="estimated_date" property="estimatedDate" jdbcType="DATE" />
+	</resultMap>
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id"
+		parameterType="com.ally.sevenevection.bean.SevenEvection">
+		insert into seven_evection (id, e_sid, e_apply_time,
+		e_state, e_goal, e_text,estimated_date)
+		values (#{id,jdbcType=INTEGER},
+		#{eSid,jdbcType=INTEGER},
+		#{eApplyTime,jdbcType=TIMESTAMP},
+		#{eState,jdbcType=INTEGER}, 
+		#{eGoal,jdbcType=LONGVARCHAR},
+		#{eText,jdbcType=LONGVARCHAR},#{estimatedDate,jdbcType=DATE})
+	</insert>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select id, e_sid, e_apply_time, e_state, e_branch_time,
+		e_director_time,
+		e_manager,
+		e_manager_time, e_goal, e_branch, e_director,estimated_date
+		from seven_evection
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<update id="addBranch" parameterType="com.ally.sevenvacate.bean.SevenVacate">
+		update seven_evection
+		set
+		e_state = #{eState,jdbcType=INTEGER},
+		e_branch_time =
+		#{eBranchTime,jdbcType=TIMESTAMP},
+		e_branch = #{eBranch,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="addDirector" parameterType="com.ally.sevenvacate.bean.SevenVacate">
+		update seven_evection
+		set
+		e_state = #{eState,jdbcType=INTEGER},
+		e_director_time =
+		#{eDirectorTime,jdbcType=TIMESTAMP},
+		e_director =
+		#{eDirector,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="addManger" parameterType="com.ally.sevenvacate.bean.SevenVacate">
+		update seven_evection
+		set
+		e_state = #{eState,jdbcType=INTEGER},
+		e_manager_time = #{eManagerTime,jdbcType=TIMESTAMP},
+		e_manager = #{eManager,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="getSevenEvectionList" resultMap="BaseResultMap">
+		select id, e_sid, e_apply_time, e_state,  e_goal,estimated_date
+		from seven_evection
+		<where>
+			<if test="eSid != null">
+				e_sid = #{eSid}
+			</if>
+			<if test="eState != null">
+				and e_state = #{eState}
+			</if>
+			<if test="eGoal != null and eGoal != ''">
+				and e_goal like #{eGoal}
+			</if>
+			<if test="eApplyTime != null and eApplyTime != ''">
+				and e_apply_time like #{eApplyTime}
+			</if>
+		</where>
+		order by id desc
+	</select>
+	<select id="getIndexList" resultMap="BaseResultMap">
+		select id, e_sid, e_apply_time, e_state,  e_goal
+		from seven_evection
+		<where>
+				e_sid = #{eSid}
+			<if test="now != null and now != '' and after != null and after != ''">
+				and estimated_date between #{now} and #{after}
+			</if>
+		</where>
+		order by id desc
+	</select>
+</mapper>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevenaccount.mapper.SevenAccountMapper">
+	<resultMap id="BaseResultMap" type="com.ally.sevenaccount.bean.SevenAccount">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="a_account" property="aAccount" jdbcType="VARCHAR" />
+		<result column="a_password" property="aPassword" jdbcType="VARCHAR" />
+		<result column="a_rid" property="aRid" jdbcType="INTEGER" />
+		<result column="a_nickname" property="aNickname" jdbcType="VARCHAR" />
+		<result column="a_pid" property="aPid" jdbcType="INTEGER" />
+		<result column="a_state" property="aState" jdbcType="INTEGER" />
+		<result column="a_sid" property="aSid" jdbcType="INTEGER" />
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		seven_account
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.ally.sevenaccount.bean.SevenAccount">
+		insert into seven_account (id,
+		a_account, a_password,
+		a_rid, a_nickname, a_pid,
+		a_state, a_sid)
+		values
+		(#{id,jdbcType=INTEGER}, #{aAccount,jdbcType=VARCHAR},
+		#{aPassword,jdbcType=VARCHAR},
+		#{aRid,jdbcType=INTEGER},
+		#{aNickname,jdbcType=VARCHAR}, #{aPid,jdbcType=INTEGER},
+		#{aState,jdbcType=INTEGER}, #{aSid,jdbcType=INTEGER})
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="com.ally.sevenaccount.bean.SevenAccount">
+		update
+		seven_account
+		set a_account = #{aAccount,jdbcType=VARCHAR},
+		a_password =
+		#{aPassword,jdbcType=VARCHAR},
+		a_rid = #{aRid,jdbcType=INTEGER},
+		a_nickname = #{aNickname,jdbcType=VARCHAR},
+		a_pid =
+		#{aPid,jdbcType=INTEGER},
+		a_state = #{aState,jdbcType=INTEGER},
+		a_sid =
+		#{aSid,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select id, a_account, a_password, a_rid, a_nickname,
+		a_pid, a_state, a_sid
+		from seven_account
+		where id =
+		#{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, a_account,
+		a_password, a_rid, a_nickname, a_pid, a_state, a_sid
+		from seven_account
+	</select>
+	<select id="getSevenAccountList" resultMap="BaseResultMap">
+		select id, a_account, a_password, a_rid, a_nickname, a_pid, a_state,
+		a_sid
+		from seven_account
+		<where>
+			<if test="aAccount != null and aAccount != ''">
+				a_account like #{aAccount}
+			</if>
+		</where>
+	</select>
+	<update id="updateSevenAccountState" parameterType="java.lang.Integer">
+		update
+		seven_account
+		set
+		a_state = #{aState}
+		where id = #{id}
+	</update>
+	<select id="checkName" resultType="java.lang.String">
+		SELECT a_account FROM
+		seven_account where a_account=#{1}
+	</select>
+	<select id="login" resultType="com.ally.sevenaccount.bean.SevenAccount">
+		select * from seven_account where a_account=#{aAccount} and
+		a_password=#{aPassword}
+	</select>
+	<update id="updateNowSevenAccount" parameterType="com.ally.sevenaccount.bean.SevenAccount">
+		update
+		seven_account
+		set
+		a_nickname = #{aNickname,jdbcType=VARCHAR},
+		a_pid =
+		#{aPid,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectOtherAccount" resultMap="BaseResultMap">
+		select id, a_account,
+		a_password, a_rid, a_nickname, a_pid, a_state, a_sid
+		from seven_account
+		where a_rid =#{id}
+	</select>
+	<update id="updatePassword" parameterType="com.ally.sevenaccount.bean.SevenAccount">
+		update
+		seven_account
+		set 
+		a_password =#{paws}
+		where id = #{id}
+	</update>
+</mapper>

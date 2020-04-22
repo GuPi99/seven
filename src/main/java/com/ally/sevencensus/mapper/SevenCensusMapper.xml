@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevencensus.mapper.SevenCensusMapper" >
+  <resultMap id="BaseResultMap" type="com.ally.sevencensus.bean.SevenCensus" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="sale_volume" property="saleVolume" jdbcType="DECIMAL" />
+    <result column="month_money" property="monthMoney" jdbcType="DECIMAL" />
+    <result column="sale_number" property="saleNumber" jdbcType="VARCHAR" />
+    <result column="census_date" property="censusDate" jdbcType="DATE" />
+    <result column="staff_id" property="staffId" jdbcType="INTEGER" />
+     <result column="c_sid" property="cSid" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ally.sevencensus.bean.SevenCensus" >
+    insert into seven_census (id, product_id, sale_volume, 
+      month_money, sale_number, census_date, 
+      staff_id,c_sid)
+    values (#{id,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{saleVolume,jdbcType=DECIMAL}, 
+      #{monthMoney,jdbcType=DECIMAL}, #{saleNumber,jdbcType=VARCHAR}, #{censusDate,jdbcType=DATE}, 
+      #{staffId,jdbcType=INTEGER},#{cSid,jdbcType=INTEGER})
+  </insert>
+  <select id="getSevenCensusList" resultMap="BaseResultMap" >
+    select id, product_id, sale_volume, month_money, sale_number, census_date, staff_id,c_sid
+    from seven_census
+     <where>
+    	<if test="productId != null and productId != ''">
+    		product_id=#{productId}
+    	</if>
+    	<if test="censusDate != null and censusDate != ''">
+			and census_date like #{censusDate}
+		</if>
+    </where> 
+    order by id desc
+  </select>
+  <select id="getCensusNumber" resultMap="BaseResultMap" >
+    select product_id, sale_volume 
+    from seven_census
+    <where>
+    	<if test="censusDate != null and censusDate != ''">
+				 census_date like #{censusDate}
+			</if>
+    </where>
+  </select>
+  <select id="getCensusMoney" resultMap="BaseResultMap" >
+    select c_sid, month_money 
+    from seven_census
+    <where>
+    	<if test="censusDate != null and censusDate != ''">
+				 census_date like #{censusDate}
+		</if>
+    </where>
+  </select>
+</mapper>

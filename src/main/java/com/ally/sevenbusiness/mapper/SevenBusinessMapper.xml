@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevenbusiness.mapper.SevenBusinessMapper" >
+  <resultMap id="BaseResultMap" type="com.ally.sevenbusiness.bean.SevenBusiness" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="staff_id" property="staffId" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="dispatch_number" property="dispatchNumber" jdbcType="VARCHAR" />
+    <result column="draft_id" property="draftId" jdbcType="INTEGER" />
+    <result column="draft_date" property="draftDate" jdbcType="DATE" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="business_id" property="businessId" jdbcType="INTEGER" />
+    <result column="text" property="text" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ally.sevenbusiness.bean.SevenBusiness" >
+    insert into seven_business (id, staff_id, title, dispatch_number,
+      draft_id, draft_date, status, 
+      business_id, text)
+    values (#{id,jdbcType=INTEGER}, #{staffId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{dispatchNumber,jdbcType=VARCHAR}, 
+      #{draftId,jdbcType=INTEGER}, #{draftDate,jdbcType=DATE}, #{status,jdbcType=INTEGER}, 
+      #{businessId,jdbcType=INTEGER}, #{text,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.ally.sevenbusiness.bean.SevenBusiness" >
+    update seven_business
+    set staff_id = #{staffId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      dispatch_number=#{dispatchNumber,jdbcType=VARCHAR},
+      draft_id = #{draftId,jdbcType=INTEGER},
+      draft_date = #{draftDate,jdbcType=DATE},
+      status = #{status,jdbcType=INTEGER},
+      business_id = #{businessId,jdbcType=INTEGER},
+      text = #{text,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, staff_id, title, dispatch_number,draft_id, draft_date, status, business_id, text
+    from seven_business
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <update id="updateReadStatus" parameterType="java.lang.Integer">
+		update
+		seven_business
+		set 
+		status =1
+		where id = #{id}
+	</update>
+	<select id="getIndexList" resultMap="BaseResultMap">
+		 select id,  title,dispatch_number,  draft_date, status
+   		 from seven_business
+		where staff_id=#{staffId} and status = 1 order by draft_date desc
+	</select>
+	<select id="getIndexCount" resultType="java.lang.Integer">
+		select count(*)
+		from seven_business
+		where staff_id=#{staffId} and status = 1
+	</select>
+	<select id="getSevenBusinessList" resultMap="BaseResultMap" >
+    select id, title,dispatch_number, draft_id, draft_date 
+    from seven_business
+    <where>
+    	staff_id=#{staffId}
+    	<if test="title != null and title != ''">
+    		and title like #{title}
+    	</if>
+    </where>
+    order by id desc
+  </select>
+</mapper>

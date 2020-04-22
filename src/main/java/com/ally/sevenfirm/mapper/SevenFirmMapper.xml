@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevenfirm.mapper.SevenFirmMapper">
+	<resultMap id="BaseResultMap" type="com.ally.sevenfirm.bean.SevenFirm">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="f_fid" property="fFid" jdbcType="INTEGER" />
+		<result column="f_name" property="fName" jdbcType="VARCHAR" />
+		<result column="f_phone" property="fPhone" jdbcType="VARCHAR" />
+		<result column="f_email" property="fEmail" jdbcType="VARCHAR" />
+		<result column="f_fax" property="fFax" jdbcType="VARCHAR" />
+		<result column="f_ein" property="fEin" jdbcType="VARCHAR" />
+		<result column="f_site" property="fSite" jdbcType="VARCHAR" />
+		<result column="f_sid" property="fSid" jdbcType="INTEGER" />
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from seven_firm
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.ally.sevenfirm.bean.SevenFirm">
+		insert into seven_firm (id, f_fid, f_name,
+		f_phone, f_email, f_fax,
+		f_ein, f_site, f_sid)
+		values (#{id,jdbcType=INTEGER}, #{fFid,jdbcType=INTEGER},
+		#{fName,jdbcType=VARCHAR},
+		#{fPhone,jdbcType=VARCHAR}, #{fEmail,jdbcType=VARCHAR}, #{fFax,jdbcType=VARCHAR},
+		#{fEin,jdbcType=VARCHAR}, #{fSite,jdbcType=VARCHAR},
+		#{fSid,jdbcType=INTEGER})
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="com.ally.sevenfirm.bean.SevenFirm">
+		update seven_firm
+		set f_fid = #{fFid,jdbcType=INTEGER},
+		f_name = #{fName,jdbcType=VARCHAR},
+		f_phone = #{fPhone,jdbcType=VARCHAR},
+		f_email = #{fEmail,jdbcType=VARCHAR},
+		f_fax = #{fFax,jdbcType=VARCHAR},
+		f_ein = #{fEin,jdbcType=VARCHAR},
+		f_site = #{fSite,jdbcType=VARCHAR},
+		f_sid = #{fSid,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select id, f_fid, f_name, f_phone, f_email, f_fax, f_ein, f_site, f_sid
+		from seven_firm
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, f_fid, f_name, f_phone, f_email, f_fax, f_ein, f_site, f_sid
+		from seven_firm
+	</select>
+	<select id="getSevenFirmList" resultMap="BaseResultMap">
+		select *
+		from seven_firm
+		<where>
+			<if test="fName != null and fName != ''">
+				f_name like #{fName}
+			</if>
+		</where>
+	</select>
+	<select id="selectName" resultType="java.lang.String">
+		SELECT f_name FROM seven_firm where id =#{1}
+	</select>
+	<select id="selectUnderFirm" resultMap="BaseResultMap">
+		select id, f_fid, f_name, f_phone, f_email, f_fax, f_ein, f_site, f_sid
+		from seven_firm
+		where f_fid=#{id}
+	</select>
+	<insert id="batchFirm">
+    insert into seven_firm(f_fid, f_name, f_phone, f_email, f_fax,f_ein,f_site,f_sid) values 
+    <foreach collection="list"  item="sevenFirm" separator=",">
+      (#{sevenFirm.fFid},#{sevenFirm.fName},#{sevenFirm.fPhone},#{sevenFirm.fEmail},#{sevenFirm.fFax},#{sevenFirm.fEin},#{sevenFirm.fSite},#{sevenFirm.fSid})
+    </foreach>
+  </insert>
+</mapper>

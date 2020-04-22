@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.seventerrace.mapper.SevenTerraceMapper">
+	<resultMap id="BaseResultMap" type="com.ally.seventerrace.bean.SevenTerrace">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="t_fid" property="tFid" jdbcType="INTEGER" />
+		<result column="t_name" property="tName" jdbcType="VARCHAR" />
+		<result column="t_url" property="tUrl" jdbcType="VARCHAR" />
+		<result column="t_email" property="tEmail" jdbcType="VARCHAR" />
+		<result column="t_paw" property="tPaw" jdbcType="VARCHAR" />
+		<result column="t_state" property="tState" jdbcType="INTEGER" />
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from seven_terrace
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.ally.seventerrace.bean.SevenTerrace">
+		insert into seven_terrace (id, t_fid, t_name,
+		t_url, t_email, t_paw,
+		t_state)
+		values (#{id,jdbcType=INTEGER}, #{tFid,jdbcType=INTEGER},
+		#{tName,jdbcType=VARCHAR},
+		#{tUrl,jdbcType=VARCHAR}, #{tEmail,jdbcType=VARCHAR}, #{tPaw,jdbcType=VARCHAR},
+		#{tState,jdbcType=INTEGER})
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="com.ally.seventerrace.bean.SevenTerrace">
+		update seven_terrace
+		set t_fid = #{tFid,jdbcType=INTEGER},
+		t_name = #{tName,jdbcType=VARCHAR},
+		t_url = #{tUrl,jdbcType=VARCHAR},
+		t_email = #{tEmail,jdbcType=VARCHAR},
+		t_paw = #{tPaw,jdbcType=VARCHAR},
+		t_state = #{tState,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select id, t_fid, t_name, t_url, t_email, t_paw, t_state
+		from seven_terrace
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, t_fid, t_name, t_url, t_email, t_paw, t_state
+		from seven_terrace
+	</select>
+	<select id="getSevenTerraceList" resultMap="BaseResultMap">
+		select id, t_fid, t_name, t_url, t_email, t_paw, t_state
+		from seven_terrace
+		<where>
+			<if test="tFid != null and tFid !=0">
+				t_fid = #{tFid}
+			</if>
+			<if test="tName !=null and tName != ''">
+				and t_name like #{tName}
+			</if>
+		</where>
+	</select>
+	<update id="changeState" parameterType="java.lang.Integer" >
+   update seven_terrace
+    set  t_state = #{tState}
+    where id = #{id}
+  </update>
+</mapper>

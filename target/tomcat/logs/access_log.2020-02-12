@@ -1,0 +1,9 @@
+0:0:0:0:0:0:0:1 - - [12/Feb/2020:15:53:59 +0800] "GET /seven HTTP/1.1" 302 - http-bio-8084-exec-2 0
+0:0:0:0:0:0:0:1 - - [12/Feb/2020:15:53:59 +0800] "GET /seven/ HTTP/1.1" 302 - http-bio-8084-exec-3 28
+0:0:0:0:0:0:0:1 - - [12/Feb/2020:15:53:59 +0800] "GET /seven/login.jsp HTTP/1.1" 404 981 http-bio-8084-exec-4 3
+0:0:0:0:0:0:0:1 - - [12/Feb/2020:15:53:59 +0800] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8084-exec-5 0
+0:0:0:0:0:0:0:1 - - [12/Feb/2020:15:54:23 +0800] "GET /seven/sevenAccount/selectAll HTTP/1.1" 302 - http-bio-8084-exec-6 16
+0:0:0:0:0:0:0:1 - - [12/Feb/2020:15:54:23 +0800] "GET /seven/login.jsp HTTP/1.1" 404 981 http-bio-8084-exec-8 1
+0:0:0:0:0:0:0:1 - - [12/Feb/2020:15:56:24 +0800] "GET /seven/sevenAccount/selectAll HTTP/1.1" 500 24668 http-bio-8084-exec-1 163
+0:0:0:0:0:0:0:1 - - [12/Feb/2020:15:58:01 +0800] "GET /seven/sevenAccount/selectAll HTTP/1.1" 500 5762 http-bio-8084-exec-1 316
+0:0:0:0:0:0:0:1 - - [12/Feb/2020:15:59:02 +0800] "GET /seven/sevenAccount/selectAll HTTP/1.1" 200 12 http-bio-8084-exec-1 341

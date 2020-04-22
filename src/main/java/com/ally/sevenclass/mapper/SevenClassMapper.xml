@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevenclass.mapper.SevenClassMapper">
+	<resultMap id="BaseResultMap" type="com.ally.sevenclass.bean.SevenClass">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="c_name" property="cName" jdbcType="VARCHAR" />
+		<result column="c_describe" property="cDescribe" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		seven_class
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.ally.sevenclass.bean.SevenClass">
+		insert into seven_class (id,
+		c_name, c_describe
+		)
+		values (#{id,jdbcType=INTEGER},
+		#{cName,jdbcType=VARCHAR},
+		#{cDescribe,jdbcType=LONGVARCHAR}
+		)
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="com.ally.sevenclass.bean.SevenClass">
+		update seven_class
+		set c_name = #{cName,jdbcType=VARCHAR},
+		c_describe =
+		#{cDescribe,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select id, c_name, c_describe
+		from seven_class
+		where id =
+		#{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, c_name, c_describe
+		from seven_class
+	</select>
+	<select id="getSevenClassList" resultMap="BaseResultMap">
+		select id, c_name, c_describe
+		from seven_class
+		<where>
+			<if test="cName != null and cName != ''">
+				c_name like #{cName}
+			</if>
+		</where>
+	</select>
+	<select id="selectName" resultType="java.lang.String">
+		SELECT c_name FROM
+		seven_class where id=#{1}
+	</select>
+	<select id="selectAllName" resultMap="BaseResultMap">
+		select id, c_name
+		from seven_class
+	</select>
+</mapper>

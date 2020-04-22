@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevenprojectreport.mapper.SevenProjectReportMapper" >
+  <resultMap id="BaseResultMap" type="com.ally.sevenprojectreport.bean.SevenProjectReport" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="pr_pid" property="prPid" jdbcType="INTEGER" />
+    <result column="pr_time" property="prTime" jdbcType="TIMESTAMP" />
+    <result column="pr_report" property="prReport" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ally.sevenprojectreport.bean.SevenProjectReport" >
+    insert into seven_project_report (id, pr_pid, pr_time, 
+      pr_report)
+    values (#{id,jdbcType=INTEGER}, #{prPid,jdbcType=INTEGER}, #{prTime,jdbcType=TIMESTAMP}, 
+      #{prReport,jdbcType=LONGVARCHAR})
+  </insert>
+  <select id="selectProjectReport" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, pr_pid, pr_time, pr_report
+    from seven_project_report
+    where pr_pid = #{prPid}
+  </select>
+</mapper>

@@ -1,0 +1,69 @@
+.layui-form-item{
+	color: #656565 !important;
+}
+
+.layui-form-item .layui-form-label{
+	width: 110px;
+	padding: 5px 15px;
+}
+
+.layui-form-item .layui-input-block input{
+	height: 30px;
+	font-size: 13px !important;
+}
+
+.layui-form-item .layui-form-label span{
+	display: inline-block;
+	vertical-align: middle;
+	color: red;
+	padding: 0 5px;
+	margin-top: 4px;
+}
+
+.layui-form-item .layui-input-block{
+	width: 200px;
+	margin-left: 140px;
+}
+
+.layui-form-item .layui-input-block.zyc_block_btn{
+	position: relative;
+}
+
+.layui-form-item .layui-input-block.zyc_block_btn input{
+	padding-right: 50px;
+}
+
+.layui-form-item .layui-input-block.zyc_block_btn button{
+	width: 50px;
+	background-color: #1cac84;
+	color: #fff;
+	font-size: 13px;
+	padding: 0;
+	line-height: 30px !important;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.layui-form-item .layui-input-block.zyc_block_img img{
+	width: 70px;
+	height: 70px;
+	background-color: #f2f2f2;
+	padding: 8px;
+	border: 1px solid #e0e0e0;
+}
+
+.layui-form-radio{
+	margin-top: 2px !important;
+}
+
+.layui-tab-title{
+	height: 44px !important;
+	padding-left: 10px;
+}
+
+.layui-tab-title li.layui-this{
+	color: #4a85fe;
+	border-top: 3px solid #4a85fe;
+	font-weight: 500;
+}

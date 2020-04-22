@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevenbankaccount.mapper.SevenBankAccountMapper" >
+  <resultMap id="BaseResultMap" type="com.ally.sevenbankaccount.bean.SevenBankAccount" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="ba_fid" property="baFid" jdbcType="INTEGER" />
+    <result column="ba_bid" property="baBid" jdbcType="INTEGER" />
+    <result column="ba_account" property="baAccount" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from seven_bank_account
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ally.sevenbankaccount.bean.SevenBankAccount" >
+    insert into seven_bank_account (id, ba_fid, ba_bid, 
+      ba_account)
+    values (#{id,jdbcType=INTEGER}, #{baFid,jdbcType=INTEGER}, #{baBid,jdbcType=INTEGER}, 
+      #{baAccount,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.ally.sevenbankaccount.bean.SevenBankAccount" >
+    update seven_bank_account
+    set ba_fid = #{baFid,jdbcType=INTEGER},
+      ba_bid = #{baBid,jdbcType=INTEGER},
+      ba_account = #{baAccount,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, ba_fid, ba_bid, ba_account
+    from seven_bank_account
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, ba_fid, ba_bid, ba_account
+    from seven_bank_account
+  </select>
+  <select id="getSevenBankAccountList" resultMap="BaseResultMap">
+		select id, ba_fid, ba_bid, ba_account
+		from seven_bank_account
+		<where>
+			<if test="baFid !=null and baFid !=0">
+				ba_fid = #{baFid}
+			</if>
+			<if test="baBid != null and baBid !=0">
+				and ba_bid = #{baBid}
+			</if>
+		</where>
+	</select>
+</mapper>

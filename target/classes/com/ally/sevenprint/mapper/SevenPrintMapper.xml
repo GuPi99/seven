@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevenprint.mapper.SevenPrintMapper" >
+  <resultMap id="BaseResultMap" type="com.ally.sevenprint.bean.SevenPrint" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="p_name" property="pName" jdbcType="VARCHAR" />
+    <result column="p_url" property="pUrl" jdbcType="VARCHAR" />
+    <result column="p_aid" property="pAid" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from seven_print
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="com.ally.sevenprint.bean.SevenPrint" >
+    insert into seven_print (id, p_name, p_url, 
+      p_aid)
+    values (#{id,jdbcType=INTEGER}, #{pName,jdbcType=VARCHAR}, #{pUrl,jdbcType=VARCHAR}, 
+      #{pAid,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.ally.sevenprint.bean.SevenPrint" >
+    update seven_print
+    set p_name = #{pName,jdbcType=VARCHAR},
+      p_url = #{pUrl,jdbcType=VARCHAR},
+      p_aid = #{pAid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, p_name, p_url, p_aid
+    from seven_print
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, p_name, p_url, p_aid
+    from seven_print
+  </select>
+  <select id="selectUrl" resultType="java.lang.String">
+  select p_url from seven_print where id=#{id}
+  </select>
+</mapper>

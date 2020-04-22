@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevenprojectschedule.mapper.SevenProjectScheduleMapper" >
+  <resultMap id="BaseResultMap" type="com.ally.sevenprojectschedule.bean.SevenProjectSchedule" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="ps_pid" property="psPid" jdbcType="INTEGER" />
+    <result column="ps_url" property="psUrl" jdbcType="VARCHAR" />
+    <result column="ps_time" property="psTime" jdbcType="TIMESTAMP" />
+    <result column="ps_content" property="psContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from seven_project_schedule
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ally.sevenprojectschedule.bean.SevenProjectSchedule" >
+    insert into seven_project_schedule (id, ps_pid, ps_url, 
+      ps_time, ps_content)
+    values (#{id,jdbcType=INTEGER}, #{psPid,jdbcType=INTEGER}, #{psUrl,jdbcType=VARCHAR}, 
+      #{psTime,jdbcType=TIMESTAMP}, #{psContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.ally.sevenprojectschedule.bean.SevenProjectSchedule" >
+    update seven_project_schedule
+    set ps_pid = #{psPid,jdbcType=INTEGER},
+      ps_url = #{psUrl,jdbcType=VARCHAR},
+      ps_time = #{psTime,jdbcType=TIMESTAMP},
+      ps_content = #{psContent,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, ps_pid, ps_url, ps_time, ps_content
+    from seven_project_schedule
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, ps_pid, ps_url, ps_time, ps_content
+    from seven_project_schedule
+  </select>
+  <select id="getSevenProjectScheduleList" resultMap="BaseResultMap" >
+    select id, ps_pid, ps_url, ps_time, ps_content
+    from seven_project_schedule
+    <where>
+    	<if test="psPid != null">
+    		ps_pid=#{psPid}
+    	</if>
+    </where>
+  </select>
+</mapper>

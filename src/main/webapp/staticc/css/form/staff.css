@@ -1,0 +1,86 @@
+.zyc_content header{
+	background-color: #18aa8c;
+	height: 325px;
+	padding: 65px 105px;
+	position: relative;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;
+}
+
+.zyc_content header>button{
+	border: 1px solid #8dd3cc;
+	height: 28px;
+	line-height: 28px;
+	width: 70px;
+	font-size: 13px;
+	background-color: #18aa8c;
+	color: #8dd3cc;
+	padding: 0 !important;
+	letter-spacing: 0.5px;
+	position: absolute;
+	top: 20px;
+	left: 20px;
+}
+
+.zyc_content header>div.zyc_head_img{
+	width: 135px;
+	height: 135px;
+	background-color: #fff;
+	border-radius: 50%;
+	display: inline-block;
+	padding: 20px;
+}
+
+.zyc_content header>div.zyc_head_img img{
+	width: 100%;
+}
+
+.zyc_content header>div.zyc_head_mess{
+	display: inline-block;
+	color: #fff;
+	vertical-align: middle;
+	margin-left: 40px;
+	font-size: 14px;
+	line-height: 28px;
+	width: calc(100% - 200px);
+	width: -moz-calc(100% - 200px);
+	width: -webkit-calc(100% - 200px);
+}
+
+.zyc_content header>div.zyc_head_mess>.zyc_name{
+	font-size: 18px;
+	padding: 15px 0 ;
+	border-bottom: 1px solid #fff;
+	line-height: 36px;
+}
+
+.zyc_content header>div.zyc_head_mess>.zyc_branch{
+	margin-top: 15px;
+}
+
+.zyc_content center{
+	margin: -35px 70px 0;
+	padding: 30px 25px;
+	background-color: #fff;
+	position: relative;
+	z-index: 2;
+	border: 1px solid rgba(40, 47, 62, 0.08);
+	box-shadow: 0px 2px 15px rgba(40, 47, 62, 0.08);
+	border-radius: 5px;
+}
+
+.zyc_content center .layui-tab-title{
+	color: #333;
+	font-size: 12px;
+	letter-spacing: 2px;
+}
+
+.zyc_content center .layui-tab-title i{
+	color: #1cac84;
+}
+
+.zyc_content center .zyc-form{
+	padding: 75px 180px 60px;
+}
+

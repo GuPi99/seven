@@ -1,0 +1,35 @@
+.layui-form-item{
+				height: 26px;
+				width: 230px;
+			}
+			.layui-form-item input{
+				height: 100%;
+			}
+			.layui-form-item button{
+				height: 100%;
+				line-height: 26px;
+				border-radius: 8px;
+			}
+			#zyc_add span{
+				margin-right: 20px;
+				display: inline-block;
+			}
+			.layui-table-view,
+			.layui-table-header{
+				border: 0;
+			}
+			.layui-table-view th{
+				border: 0;
+			}
+			.layui-table thead tr{
+				background: #DEF1FB;
+			}
+			.layui-table-tool{
+				border: 0;
+			}
+			.layui-table tbody td{
+				border-right: 0;
+			}
+			.layui-table-view .layui-table{
+				text-align: center;
+			}

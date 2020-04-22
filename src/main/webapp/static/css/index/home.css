@@ -1,0 +1,86 @@
+[class*='zyc_model_']>div.zyc_row{
+	margin: 6px;
+	background-color: #fff;
+	border-radius: 3px;
+}
+
+[class*='zyc_model_']>div .zyc_model_title{
+	line-height: 28px;
+	font-size: 13px;
+	padding: 6px 12px;
+	margin: 0 !important;
+	font-weight: 500;
+	position: relative;
+	text-align: left;
+	color: #000;
+}
+/**
+ * 世界地图
+ */
+#main{
+	width: 100%;
+	min-height: 200px;
+}
+
+/**
+ * 数字统计
+ */
+.zyc_model_50{
+	text-align: center;
+	color: #fff;
+}
+.zyc_row>.zyc_model_50{
+	padding: 25px 0;
+}
+.zyc_row>.zyc_model_50>.zyc_model_title{
+	text-align: center;
+	color: #fff;
+}
+.zyc_model_50 i{
+	font-size: 50px;
+}
+
+.zyc_row>.zyc_model_50:first-child{
+	background-color: #F1AF09;
+}
+
+.zyc_row>.zyc_model_50:nth-child(2){
+	background-color: #00F7DE;
+}
+
+.zyc_row>.zyc_model_50:nth-child(3){
+	background-color: #01AAED;
+}
+
+.zyc_row>.zyc_model_50:last-child{
+	background-color: #D63031;
+}
+
+.zyc_choose{
+	width: 150px;
+	position: absolute;
+	display: block;
+	top: 5px;
+	right: 5px;
+}
+
+.zyc_choose1{
+	width: 150px;
+	position: absolute;
+	display: block;
+	top: 5px;
+	right: 160px;
+}
+
+#mcd,
+#mos,
+#css,
+#obs,
+#oas{
+	width: 100%;
+	min-height: 250px;
+}
+
+.fy-select{
+	line-height: 18px !important;
+}

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevenreport.mapper.SevenReportMapper">
+	<resultMap id="BaseResultMap" type="com.ally.sevenreport.bean.SevenReport">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="r_sid" property="rSid" jdbcType="INTEGER" />
+		<result column="r_crew" property="rCrew" jdbcType="VARCHAR" />
+		<result column="r_date" property="rDate" jdbcType="DATE" />
+		<result column="r_title" property="rTitle" jdbcType="VARCHAR" />
+		<result column="r_firm" property="rFirm" jdbcType="VARCHAR" />
+		<result column="r_user" property="rUser" jdbcType="VARCHAR" />
+		<result column="r_goal" property="rGoal" jdbcType="LONGVARCHAR" />
+		<result column="r_verdict" property="rVerdict" jdbcType="LONGVARCHAR" />
+		<result column="r_record" property="rRecord" jdbcType="LONGVARCHAR" />
+		<result column="r_activity" property="rActivity" jdbcType="LONGVARCHAR" />
+		<result column="r_assist" property="rAssist" jdbcType="LONGVARCHAR" />
+		<result column="r_indicate" property="rIndicate" jdbcType="LONGVARCHAR" />
+		<result column="r_contact" property="rContact" jdbcType="LONGVARCHAR" />
+		<result column="r_reply" property="rReply" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from seven_report
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.ally.sevenreport.bean.SevenReport">
+		insert into seven_report (id, r_sid, r_crew,
+		r_date, r_title, r_firm,
+		r_user, r_goal, r_verdict,
+		r_record, r_activity, r_assist,
+		r_indicate, r_contact, r_reply
+		)
+		values (#{id,jdbcType=INTEGER}, #{rSid,jdbcType=INTEGER},
+		#{rCrew,jdbcType=VARCHAR},
+		#{rDate,jdbcType=DATE}, #{rTitle,jdbcType=VARCHAR}, #{rFirm,jdbcType=VARCHAR},
+		#{rUser,jdbcType=VARCHAR}, #{rGoal,jdbcType=LONGVARCHAR},
+		#{rVerdict,jdbcType=LONGVARCHAR},
+		#{rRecord,jdbcType=LONGVARCHAR}, #{rActivity,jdbcType=LONGVARCHAR}, #{rAssist,jdbcType=LONGVARCHAR},
+		#{rIndicate,jdbcType=LONGVARCHAR}, #{rContact,jdbcType=LONGVARCHAR},
+		#{rReply,jdbcType=LONGVARCHAR}
+		)
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="com.ally.sevenreport.bean.SevenReport">
+		update seven_report
+		set r_sid = #{rSid,jdbcType=INTEGER},
+		r_crew = #{rCrew,jdbcType=VARCHAR},
+		r_date = #{rDate,jdbcType=DATE},
+		r_title = #{rTitle,jdbcType=VARCHAR},
+		r_firm = #{rFirm,jdbcType=VARCHAR},
+		r_user = #{rUser,jdbcType=VARCHAR},
+		r_goal = #{rGoal,jdbcType=LONGVARCHAR},
+		r_verdict = #{rVerdict,jdbcType=LONGVARCHAR},
+		r_record = #{rRecord,jdbcType=LONGVARCHAR},
+		r_activity = #{rActivity,jdbcType=LONGVARCHAR},
+		r_assist = #{rAssist,jdbcType=LONGVARCHAR},
+		r_indicate = #{rIndicate,jdbcType=LONGVARCHAR},
+		r_contact = #{rContact,jdbcType=LONGVARCHAR},
+		r_reply = #{rReply,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select id, r_sid, r_crew, r_date, r_title, r_firm, r_user, r_goal,
+		r_verdict, r_record,
+		r_activity, r_assist, r_indicate, r_contact, r_reply
+		from seven_report
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, r_sid, r_crew, r_date, r_title, r_firm, r_user, r_goal,
+		r_verdict, r_record,
+		r_activity, r_assist, r_indicate, r_contact, r_reply
+		from seven_report
+	</select>
+	<select id="getSevenReportList" resultMap="BaseResultMap">
+		select id, r_sid, r_crew, r_date, r_title, r_firm, r_user, r_goal,
+		r_verdict, r_record,
+		r_activity, r_assist, r_indicate, r_contact, r_reply
+		from seven_report
+		<where>
+			<if test="rSid != null">
+				r_sid = #{rSid}
+			</if>
+			<if test="rDate != null and rDate != ''">
+				and r_date like #{rDate}
+			</if>
+			<if test="rTitle != null and rTitle != ''">
+				and r_title like #{rTitle}
+			</if>
+		</where>
+		order by id desc
+	</select>
+	<update id="addIndicate" parameterType="com.ally.sevenreport.bean.SevenReport">
+		update seven_report
+		set 
+		r_indicate = #{rIndicate,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="addReply" parameterType="com.ally.sevenreport.bean.SevenReport">
+		update seven_report
+		set 
+		r_reply = #{rReply,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

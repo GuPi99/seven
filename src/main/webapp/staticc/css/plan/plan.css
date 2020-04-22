@@ -1,0 +1,68 @@
+.layui-form-item{
+	height: 26px;
+	width: 230px;
+}
+.layui-select-title{
+	height: 100%;
+}
+.layui-form-item input{
+	height: 100%;
+}
+.layui-form-item button{
+	height: 100%;
+	line-height: 26px;
+	border-radius: 8px;
+}
+#zyc_add span{
+	margin-right: 20px;
+	display: inline-block;
+}
+.layui-table-view,
+.layui-table-header{
+	border: 0;
+}
+.layui-table-view th{
+	border: 0;
+}
+.layui-table thead tr{
+	background: #DEF1FB;
+}
+.layui-table-tool{
+	border: 0;
+}
+.layui-table tbody td{
+	border-right: 0;
+}
+.layui-table-view .layui-table{
+	text-align: center;
+}
+.addicon{
+	height: 48px;
+	line-height: 48px;
+}
+.icon-jihua{
+	font-size: 36px;
+	color: #0183E6;
+	padding-right: 10px;
+}
+.topBtn{
+	padding:20px 0 10px;
+	border-bottom: 2px solid #E3E3E4;
+	margin-bottom: 50px;
+	line-height: 40px;
+	padding-left: 35px;
+}
+.btn{
+	float: right;
+}
+.left{
+	float: left;
+}
+.layui-select-title input{
+	height: 26px;
+}
+.planBlock{
+	background-color: #fff;
+	margin: 15px;
+	padding: 20px;
+}

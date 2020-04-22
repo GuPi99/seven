@@ -1,0 +1,46 @@
+::-webkit-scrollbar-track {
+	background-color: #F5F5F5
+}
+
+::-webkit-scrollbar {
+	width: 6px;
+	background-color: #F5F5F5
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #999
+}
+
+#zyc_content{
+	position: relative;
+}
+
+#zyc_content .zyc_page_title{
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 45px;
+	box-shadow: 0px 2px 15px rgba(40, 47, 62, 0.08);
+	padding: 0 15px;
+	border-bottom: 1px solid #EDEDED;
+	position: fixed;
+	width: 100%;
+	z-index: 1;
+	background-color: #fff;
+}
+
+#zyc_content .zyc_page_title i{
+	color: #393D49;
+}
+
+#zyc_content>.zyc_content{
+	padding: 70px 25px 25px;
+}
+
+#zyc_content>.zyc_content .zyc_query li{
+	display: inline-block;
+	margin-right: 10px;
+}
+
+.layui-table-tool{
+	background-color: #fff !important;
+}

@@ -1,0 +1,13 @@
+0:0:0:0:0:0:0:1 - - [20/Apr/2020:14:32:53 +0800] "GET /seven HTTP/1.1" 302 - http-bio-8082-exec-2 0
+0:0:0:0:0:0:0:1 - - [20/Apr/2020:14:32:53 +0800] "GET /seven/ HTTP/1.1" 200 4510 http-bio-8082-exec-3 72
+0:0:0:0:0:0:0:1 - - [20/Apr/2020:14:32:53 +0800] "GET /seven/static/img/title.png HTTP/1.1" 200 851 http-bio-8082-exec-5 30
+0:0:0:0:0:0:0:1 - - [20/Apr/2020:14:32:53 +0800] "GET /seven/static/css/common/common.css HTTP/1.1" 200 7550 http-bio-8082-exec-4 33
+0:0:0:0:0:0:0:1 - - [20/Apr/2020:14:32:53 +0800] "GET /seven/static/css/login.css HTTP/1.1" 200 3184 http-bio-8082-exec-1 33
+0:0:0:0:0:0:0:1 - - [20/Apr/2020:14:32:53 +0800] "GET /seven/static/js/common/layui/lay/modules/layer.js HTTP/1.1" 200 22041 http-bio-8082-exec-8 23
+0:0:0:0:0:0:0:1 - - [20/Apr/2020:14:32:53 +0800] "GET /seven/static/js/common/jquery.min.js HTTP/1.1" 200 95962 http-bio-8082-exec-7 29
+0:0:0:0:0:0:0:1 - - [20/Apr/2020:14:32:53 +0800] "GET /seven/static/js/common/common.js HTTP/1.1" 200 1535 http-bio-8082-exec-1 8
+0:0:0:0:0:0:0:1 - - [20/Apr/2020:14:32:53 +0800] "GET /seven/static/js/login/index.js HTTP/1.1" 200 2626 http-bio-8082-exec-10 10
+0:0:0:0:0:0:0:1 - - [20/Apr/2020:14:32:53 +0800] "GET /seven/static/img/titlebg.png HTTP/1.1" 200 3490 http-bio-8082-exec-1 16
+0:0:0:0:0:0:0:1 - - [20/Apr/2020:14:32:53 +0800] "GET /seven/static/img/backdrop.png HTTP/1.1" 200 941939 http-bio-8082-exec-10 26
+0:0:0:0:0:0:0:1 - - [20/Apr/2020:14:32:53 +0800] "GET /seven/static/js/common/layui/lay/modules/theme/default/layer.css?v=3.1.1 HTTP/1.1" 404 1079 http-bio-8082-exec-1 9
+0:0:0:0:0:0:0:1 - - [20/Apr/2020:14:32:54 +0800] "GET /seven/getCpacha HTTP/1.1" 200 348 http-bio-8082-exec-6 744

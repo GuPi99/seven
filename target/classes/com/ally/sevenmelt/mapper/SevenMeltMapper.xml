@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevenmelt.mapper.SevenMeltMapper">
+	<resultMap id="BaseResultMap" type="com.ally.sevenmelt.bean.SevenMelt">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="m_sid" property="mSid" jdbcType="INTEGER" />
+		<result column="m_items" property="mItems" jdbcType="VARCHAR" />
+		<result column="m_figure" property="mFigure" jdbcType="VARCHAR" />
+		<result column="m_apply_time" property="mApplyTime" jdbcType="TIMESTAMP" />
+		<result column="m_state" property="mState" jdbcType="INTEGER" />
+		<result column="m_branch_time" property="mBranchTime" jdbcType="TIMESTAMP" />
+		<result column="m_director_time" property="mDirectorTime"
+			jdbcType="TIMESTAMP" />
+		<result column="m_manager_time" property="mManagerTime"
+			jdbcType="TIMESTAMP" />
+		<result column="m_describe" property="mDescribe" jdbcType="LONGVARCHAR" />
+		<result column="m_branch" property="mBranch" jdbcType="LONGVARCHAR" />
+		<result column="m_director" property="mDirector" jdbcType="LONGVARCHAR" />
+		<result column="m_manager" property="mManager" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from seven_melt
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.ally.sevenmelt.bean.SevenMelt">
+		insert into seven_melt (id, m_sid, m_items,
+		m_figure, m_apply_time, m_state,
+		m_branch_time, m_director_time, m_manager_time,
+		m_describe, m_branch, m_director,
+		m_manager)
+		values (#{id,jdbcType=INTEGER}, #{mSid,jdbcType=INTEGER},
+		#{mItems,jdbcType=VARCHAR},
+		#{mFigure,jdbcType=VARCHAR}, #{mApplyTime,jdbcType=TIMESTAMP}, #{mState,jdbcType=INTEGER},
+		#{mBranchTime,jdbcType=TIMESTAMP},
+		#{mDirectorTime,jdbcType=TIMESTAMP},
+		#{mManagerTime,jdbcType=TIMESTAMP},
+		#{mDescribe,jdbcType=LONGVARCHAR}, #{mBranch,jdbcType=LONGVARCHAR}, #{mDirector,jdbcType=LONGVARCHAR},
+		#{mManager,jdbcType=LONGVARCHAR})
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="com.ally.sevenmelt.bean.SevenMelt">
+		update seven_melt
+		set m_sid = #{mSid,jdbcType=INTEGER},
+		m_items = #{mItems,jdbcType=VARCHAR},
+		m_figure = #{mFigure,jdbcType=VARCHAR},
+		m_apply_time = #{mApplyTime,jdbcType=TIMESTAMP},
+		m_state = #{mState,jdbcType=INTEGER},
+		m_branch_time = #{mBranchTime,jdbcType=TIMESTAMP},
+		m_director_time = #{mDirectorTime,jdbcType=TIMESTAMP},
+		m_manager_time = #{mManagerTime,jdbcType=TIMESTAMP},
+		m_describe = #{mDescribe,jdbcType=LONGVARCHAR},
+		m_branch = #{mBranch,jdbcType=LONGVARCHAR},
+		m_director = #{mDirector,jdbcType=LONGVARCHAR},
+		m_manager = #{mManager,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select id, m_sid, m_items, m_figure, m_apply_time, m_state, m_branch_time,
+		m_director_time,
+		m_manager_time, m_describe, m_branch, m_director, m_manager
+		from seven_melt
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, m_sid, m_items, m_figure, m_apply_time, m_state, m_branch_time,
+		m_director_time,
+		m_manager_time, m_describe, m_branch, m_director, m_manager
+		from seven_melt
+	</select>
+	<update id="addBranch" parameterType="com.ally.sevenmelt.bean.SevenMelt">
+		update seven_melt
+		set
+		m_state = #{mState,jdbcType=INTEGER},
+		m_branch_time = #{mBranchTime,jdbcType=TIMESTAMP},
+		m_branch = #{mBranch,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="addDirector" parameterType="com.ally.sevenmelt.bean.SevenMelt">
+		update seven_melt
+		set
+		m_state = #{mState,jdbcType=INTEGER},
+		m_director_time = #{mDirectorTime,jdbcType=TIMESTAMP},
+		m_director = #{mDirector,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="addManger" parameterType="com.ally.sevenmelt.bean.SevenMelt">
+		update seven_melt
+		set
+		m_state = #{mState,jdbcType=INTEGER},
+		m_manager_time = #{mManagerTime,jdbcType=TIMESTAMP},
+		m_manager = #{mManager,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="getSevenMeltList" resultMap="BaseResultMap">
+		select id, m_sid, m_items, m_figure, m_apply_time, m_state,
+		m_branch_time, m_director_time,
+		m_manager_time, m_describe, m_branch, m_director, m_manager
+		from seven_melt
+		<where>
+			<if test="mSid != null">
+				m_sid = #{mSid}
+			</if>
+			<if test="mState != null">
+				and m_state = #{mState}
+			</if>
+			<if test="mApplyTime != null and mApplyTime != ''">
+				and m_apply_time like #{mApplyTime}
+			</if>
+			<if test="mItems != null and mItems != ''">
+				and m_items like #{mItems}
+			</if>
+		</where>
+		order by id desc
+	</select>
+</mapper>

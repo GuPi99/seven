@@ -1,0 +1,143 @@
+.monthSale{
+	width: 50%;
+}
+.titleBg{
+	height: 10px;
+	width: 100%;
+	background: #4E9CD6;
+}
+.titleIcon{
+	float: left;
+	margin-right: 10px;
+	height: 28px;
+	line-height: 28px;
+}
+.titleIcon i{
+	color: #5991c1;
+	font-size: 20px;
+}
+.homeTitle{
+	width: 600px;
+	margin: 0 auto;
+	position: relative;
+}
+.monthSale .titleName{
+	margin: 10px 0;
+	font-size: 18px;
+	height: 28px;
+	line-height: 28px;
+}
+.main{
+	width: 600px;
+	height:300px;
+	margin: 0 auto;
+}
+.monthTotal{
+	width: 50%;
+}
+.monthTotal .titleName{
+	margin: 10px 0;
+	font-size: 18px;
+	height: 28px;
+	line-height: 28px;
+}
+.saleBlock{
+	background: #fff;
+	margin: 10px 10px 10px 50px;
+}
+.totalBlock{
+	background: #fff;
+	margin: 10px 50px 10px 10px;
+}
+.assign{
+	width: 50%;
+}
+.assingNum,
+.departNum{
+	border: 1px solid #B10974;
+	border-radius: 11px;
+	height: 22px;
+	line-height: 22px;
+	width: 22px;
+	text-align: center;
+	background: #B10974;
+	color: #fff;
+	position: absolute;
+	right: 0;
+	top: 0
+}
+.assign .titleName{
+	margin: 10px 0;
+	font-size: 18px;
+	height: 28px;
+	line-height: 28px;
+}
+.depart{
+	width: 50%;
+}
+.depart .titleName{
+	margin: 10px 0;
+	font-size: 18px;
+	height: 28px;
+	line-height: 28px;
+	
+}
+.assignSwiper {
+	width: 100%;
+	height: 100%;
+}
+.assignBlock{
+	height: 32px;
+	line-height: 32px;
+}
+.assignText{
+	float: left;
+	width: 300px;
+	padding: 0 190px 0 10px;
+	white-space: nowrap;/*内容超宽后禁止换行显示*/
+	overflow: hidden;/*超出部分隐藏*/
+	text-overflow:ellipsis;/*文字超出部分以省略号显示*/
+}
+.more{
+	float: left;
+	height: 32px;
+	width: 32px;
+	background: url(../../img/more.png) no-repeat;
+	background-size: 100%;
+}
+.topImg{
+	width: 532px;
+}
+.departImg{
+	height: 90px;
+}
+.departImg img{
+	height: 100%;
+}
+.departSwiper{
+	height: 180px;
+	margin-top: 20px;
+}
+.departBlock{
+	height: 28px;
+	line-height: 28px;
+}
+.departText{
+	width: 300px;
+	padding: 0 190px 0 10px;
+	white-space: nowrap;/*内容超宽后禁止换行显示*/
+	overflow: hidden;/*超出部分隐藏*/
+	text-overflow:ellipsis;/*文字超出部分以省略号显示*/
+}
+.center{
+	text-align: center;
+}
+.left{
+	float: left;
+}
+.right{
+	float:right
+}
+.clear{
+	clear: both;
+}

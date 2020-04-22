@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevenproject.mapper.SevenProjectMapper">
+	<resultMap id="BaseResultMap" type="com.ally.sevenproject.bean.SevenProject">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="p_sid" property="pSid" jdbcType="INTEGER" />
+		<result column="p_datetime" property="pDatetime" jdbcType="TIMESTAMP" />
+		<result column="p_fid" property="pFid" jdbcType="INTEGER" />
+		<result column="p_conditions" property="pConditions" jdbcType="VARCHAR" />
+		<result column="p_date" property="pDate" jdbcType="DATE" />
+		<result column="p_note" property="pNote" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<insert id="insert" parameterType="com.ally.sevenproject.bean.SevenProject" useGeneratedKeys="true" keyProperty="id">
+		insert into seven_project (id,
+		p_sid,
+		p_datetime, p_fid, p_conditions,
+		p_date, p_note)
+		values
+		(#{id,jdbcType=INTEGER}, #{pSid,jdbcType=INTEGER},
+		#{pDatetime,jdbcType=TIMESTAMP}, #{pFid,jdbcType=INTEGER},
+		#{pConditions,jdbcType=VARCHAR},
+		#{pDate,jdbcType=DATE},
+		#{pNote,jdbcType=LONGVARCHAR})
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="com.ally.sevenproject.bean.SevenProject">
+		update
+		seven_project
+		set p_sid = #{pSid,jdbcType=INTEGER},
+		p_datetime =
+		#{pDatetime,jdbcType=TIMESTAMP},
+		p_fid = #{pFid,jdbcType=INTEGER},
+		p_conditions = #{pConditions,jdbcType=VARCHAR},
+		p_date =
+		#{pDate,jdbcType=DATE},
+		p_note = #{pNote,jdbcType=LONGVARCHAR}
+		where id
+		= #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select id, p_sid, p_datetime, p_fid, p_conditions,
+		p_date, p_note
+		from seven_project
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="getSevenProjectList" resultMap="BaseResultMap">
+		SELECT project.*,proCheck.pc_state
+		FROM
+		seven_project project
+		LEFT JOIN
+		seven_project_check proCheck
+		ON
+		(project.id=proCheck.pc_pid)
+		<where>
+			proCheck.pc_other = 0
+			<if test="pcState != null">
+				and proCheck.pc_state = #{pcState}
+			</if>
+			<if test="pFid != null">
+				and project.p_fid=#{pFid}
+			</if>
+			<if test="pDate != null and pDate != '' ">
+				AND DATE_FORMAT(project.p_date,'%Y-%m') =
+				#{pDate}
+			</if>
+		</where>
+		order by project.id desc
+	</select>
+	<select id="getSevenProjectBillList" resultMap="BaseResultMap">
+		SELECT project.*,bill.pb_state 
+		FROM seven_project project,seven_project_bill bill 
+		<where>
+			project.id=bill.pb_pid
+			<if test="pFid != null">
+				and project.p_fid=#{pFid}
+			</if>
+			<if test="pDate != null and pDate != '' ">
+				AND DATE_FORMAT(project.p_date,'%Y-%m') =
+				#{pDate}
+			</if>
+			<if test="pbState != null">
+				and bill.pb_state = #{pbState}
+			</if>
+		</where>
+		order by project.id desc
+	</select>
+</mapper>

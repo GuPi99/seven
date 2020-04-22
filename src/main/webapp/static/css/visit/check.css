@@ -1,0 +1,59 @@
+html,body{
+				background-color: #fff;
+			}
+			#app{
+				width: 1000px;
+				margin: 0 auto;
+			}
+			.layui-form-item{
+				position: relative;
+			}
+			.titleBg{
+				border-left: 2px solid #979696;
+			}
+			.layui-form-item{
+				width: 100%;
+			}
+			.layui-form-item .layui-input-block{
+				width: 860px;
+			}
+			.icon-baifang{
+				font-size: 36px;
+				color: #0183E6;
+			}
+			.topBtn{
+				padding:20px 0 10px;
+				border-bottom: 2px solid #E3E3E4;
+				margin-bottom: 50px;
+				line-height: 40px;
+			}
+			.btn{
+				float: right;
+			}
+			.btn button{
+				background: #1E9EFE;
+				border-radius: 7px;
+				width: 50px;
+				height: 28px;
+				line-height: 28px;
+				text-align: center;
+				padding: 0;
+			}
+			.addicon{
+				float: left;
+			}
+			.clear{
+				clear: both;
+			}
+			#test1{
+				padding-left: 30px;
+			}
+			.rili{
+				position: relative;
+			}
+			.riliIcon{
+				position: absolute;
+				top: 7px;
+				left: 10px;			
+				color: #1C9EFE;
+			}

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevencontact.mapper.SevenContactMapper" >
+  <resultMap id="BaseResultMap" type="com.ally.sevencontact.bean.SevenContact" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="c_fid" property="cFid" jdbcType="INTEGER" />
+    <result column="c_name" property="cName" jdbcType="VARCHAR" />
+    <result column="c_sex" property="cSex" jdbcType="INTEGER" />
+    <result column="c_age" property="cAge" jdbcType="INTEGER" />
+    <result column="c_phone" property="cPhone" jdbcType="VARCHAR" />
+    <result column="c_email" property="cEmail" jdbcType="VARCHAR" />
+    <result column="c_state" property="cState" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from seven_contact
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ally.sevencontact.bean.SevenContact" >
+    insert into seven_contact (id, c_fid, c_name, 
+      c_sex, c_age, c_phone, 
+      c_email, c_state)
+    values (#{id,jdbcType=INTEGER}, #{cFid,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR}, 
+      #{cSex,jdbcType=INTEGER}, #{cAge,jdbcType=INTEGER}, #{cPhone,jdbcType=VARCHAR}, 
+      #{cEmail,jdbcType=VARCHAR}, #{cState,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.ally.sevencontact.bean.SevenContact" >
+    update seven_contact
+    set c_fid = #{cFid,jdbcType=INTEGER},
+      c_name = #{cName,jdbcType=VARCHAR},
+      c_sex = #{cSex,jdbcType=INTEGER},
+      c_age = #{cAge,jdbcType=INTEGER},
+      c_phone = #{cPhone,jdbcType=VARCHAR},
+      c_email = #{cEmail,jdbcType=VARCHAR},
+      c_state = #{cState,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, c_fid, c_name, c_sex, c_age, c_phone, c_email, c_state
+    from seven_contact
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, c_fid, c_name, c_sex, c_age, c_phone, c_email, c_state
+    from seven_contact
+  </select>
+  <select id="getSevenContactList" resultMap="BaseResultMap" >
+    select id, c_fid, c_name, c_sex, c_age, c_phone, c_email, c_state
+    from seven_contact
+    <where>
+    	<if test="cFid != null">
+    		c_fid=#{cFid}
+    	</if>
+    	<if test="cName !=null and cName != ''">
+    		and c_name like #{cName}
+    	</if>
+    </where>
+  </select>
+  <update id="changeState" parameterType="java.lang.Integer" >
+   update seven_contact
+    set  c_state = #{cState}
+    where id = #{id}
+  </update>
+  <select id="selectContactList" resultMap="BaseResultMap" >
+    select id, c_fid, c_name, c_sex, c_age, c_phone, c_email, c_state
+    from seven_contact
+    where c_fid=#{id}
+  </select>
+</mapper>

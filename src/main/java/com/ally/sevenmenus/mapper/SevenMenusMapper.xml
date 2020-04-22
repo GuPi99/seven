@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevenmenus.mapper.SevenMenusMapper">
+	<resultMap id="BaseResultMap" type="com.ally.sevenmenus.bean.SevenMenus">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="m_name" property="mName" jdbcType="VARCHAR" />
+		<result column="m_tag" property="mTag" jdbcType="VARCHAR" />
+		<result column="m_mid" property="mMid" jdbcType="INTEGER" />
+		<result column="m_url" property="mUrl" jdbcType="VARCHAR" />
+		<result column="m_sort" property="mSort" jdbcType="INTEGER" />
+		<result column="m_state" property="mState" jdbcType="INTEGER" />
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		seven_menus
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.ally.sevenmenus.bean.SevenMenus">
+		insert into seven_menus (id,
+		m_name, m_tag,
+		m_mid, m_url, m_sort,
+		m_state)
+		values
+		(#{id,jdbcType=INTEGER}, #{mName,jdbcType=VARCHAR},
+		#{mTag,jdbcType=VARCHAR},
+		#{mMid,jdbcType=INTEGER},
+		#{mUrl,jdbcType=VARCHAR}, #{mSort,jdbcType=INTEGER},
+		#{mState,jdbcType=INTEGER})
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="com.ally.sevenmenus.bean.SevenMenus">
+		update seven_menus
+		set m_name = #{mName,jdbcType=VARCHAR},
+		m_tag =
+		#{mTag,jdbcType=VARCHAR},
+		m_mid = #{mMid,jdbcType=INTEGER},
+		m_url =
+		#{mUrl,jdbcType=VARCHAR},
+		m_sort = #{mSort,jdbcType=INTEGER},
+		m_state =
+		#{mState,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select id, m_name, m_tag, m_mid, m_url, m_sort, m_state
+		from seven_menus
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, m_name, m_tag,
+		m_mid, m_url, m_sort, m_state
+		from seven_menus
+	</select>
+	<select id="selectMenus" resultMap="BaseResultMap">
+		select id, m_name, m_tag,
+		m_mid, m_url, m_sort, m_state
+		from seven_menus
+		where m_mid=#{1} and
+		m_state=0
+	</select>
+	<select id="getSevenMenusList" resultMap="BaseResultMap">
+		select id, m_name, m_tag, m_mid, m_url, m_sort, m_state
+		from
+		seven_menus
+		<where>
+			<if test="mMid != null and mMid != ''">
+				m_mid=#{mMid}
+			</if>
+			<if test="mName != null and mName != ''">
+				and m_name like #{mName}
+			</if>
+		</where>
+	</select>
+	<update id="updateState" parameterType="java.lang.Integer">
+		update seven_menus
+		set
+		m_state = #{mState}
+		where id = #{id}
+	</update>
+	<select id="selectRolePermissions" resultType="com.ally.sevenmenus.bean.SevenMenus"
+		parameterType="java.util.List">
+		select *
+		from seven_menus
+		<where>
+			m_state=0
+			and id in
+			<foreach collection="array" item="id" open="(" close=")"
+				separator=",">
+				#{id}
+			</foreach>
+		</where>
+	</select>
+</mapper>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevenoffice.mapper.SevenOfficeMapper" >
+  <resultMap id="BaseResultMap" type="com.ally.sevenoffice.bean.SevenOffice" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="o_sid" property="oSid" jdbcType="INTEGER" />
+    <result column="o_branch" property="oBranch" jdbcType="INTEGER" />
+    <result column="o_post" property="oPost" jdbcType="INTEGER" />
+    <result column="o_office" property="oOffice" jdbcType="DATE" />
+    <result column="o_departure" property="oDeparture" jdbcType="DATE" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from seven_office
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ally.sevenoffice.bean.SevenOffice" >
+    insert into seven_office (id, o_sid, o_branch, 
+      o_post, o_office, o_departure
+      )
+    values (#{id,jdbcType=INTEGER}, #{oSid,jdbcType=INTEGER}, #{oBranch,jdbcType=INTEGER}, 
+      #{oPost,jdbcType=INTEGER}, #{oOffice,jdbcType=DATE}, #{oDeparture,jdbcType=DATE}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.ally.sevenoffice.bean.SevenOffice" >
+    update seven_office
+    set o_sid = #{oSid,jdbcType=INTEGER},
+      o_branch = #{oBranch,jdbcType=INTEGER},
+      o_post = #{oPost,jdbcType=INTEGER},
+      o_office = #{oOffice,jdbcType=DATE},
+      o_departure = #{oDeparture,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateBeforeOffice" parameterType="com.ally.sevenoffice.bean.SevenOffice" >
+    update seven_office
+    set 
+      o_departure = #{oOffice}
+    where id = #{id}
+  </update>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, o_sid, o_branch, o_post, o_office, o_departure
+    from seven_office
+  </select>
+  <select id="getSevenOfficeList" resultMap="BaseResultMap" >
+    select id, o_sid, o_branch, o_post, o_office, o_departure
+    from seven_office
+    where o_sid=#{1}
+  </select>
+  <select id="selectBefore" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, o_sid, o_branch, o_post, o_office, o_departure
+    from seven_office
+    where o_sid = #{1} order by id desc limit 1
+  </select>
+</mapper>

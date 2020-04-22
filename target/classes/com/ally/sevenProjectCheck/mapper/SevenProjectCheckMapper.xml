@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevenProjectCheck.mapper.SevenProjectCheckMapper" >
+  <resultMap id="BaseResultMap" type="com.ally.sevenProjectCheck.bean.SevenProjectCheck" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="pc_pid" property="pcPid" jdbcType="INTEGER" />
+    <result column="pc_state" property="pcState" jdbcType="INTEGER" />
+    <result column="pc_time" property="pcTime" jdbcType="TIMESTAMP" />
+    <result column="pc_sid" property="pcSid" jdbcType="INTEGER" />
+    <result column="pc_evaluation" property="pcEvaluation" jdbcType="LONGVARCHAR" />
+      <result column="pc_other" property="pcOther" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from seven_project_check
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ally.sevenProjectCheck.bean.SevenProjectCheck" >
+    insert into seven_project_check (id, pc_pid, pc_state, 
+      pc_time, pc_sid, pc_evaluation,pc_other
+      )
+    values (#{id,jdbcType=INTEGER}, #{pcPid,jdbcType=INTEGER}, #{pcState,jdbcType=INTEGER}, 
+      #{pcTime,jdbcType=TIMESTAMP}, #{pcSid,jdbcType=INTEGER}, #{pcEvaluation,jdbcType=LONGVARCHAR},#{pcOther,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.ally.sevenProjectCheck.bean.SevenProjectCheck" >
+    update seven_project_check
+    set pc_pid = #{pcPid,jdbcType=INTEGER},
+      pc_state = #{pcState,jdbcType=INTEGER},
+      pc_time = #{pcTime,jdbcType=TIMESTAMP},
+      pc_sid = #{pcSid,jdbcType=INTEGER},
+      pc_evaluation = #{pcEvaluation,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, pc_pid, pc_state, pc_time, pc_sid, pc_evaluation
+    from seven_project_check
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="getSevenProjectCheckList" resultMap="BaseResultMap" >
+    select id, pc_pid, pc_state, pc_time, pc_sid, pc_evaluation
+    from seven_project_check
+    <where>
+    	<if test="pcPid != null">
+    		pc_pid=#{pcPid}
+    	</if>
+    </where>
+  </select>
+   <select id="selectCheck" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, pc_pid, pc_state, pc_time, pc_sid, pc_evaluation,pc_other
+    from seven_project_check
+    where pc_pid = #{pcPid} order by id desc limit 1
+  </select>
+  <update id="updateOther" parameterType="com.ally.sevenProjectCheck.bean.SevenProjectCheck" >
+    update seven_project_check
+    set 
+      pc_other = 1
+     where pc_pid = #{pcPid}
+  </update>
+</mapper>

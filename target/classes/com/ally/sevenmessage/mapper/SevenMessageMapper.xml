@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevenmessage.mapper.SevenMessageMapper" >
+  <resultMap id="BaseResultMap" type="com.ally.sevenmessage.bean.SevenMessage" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="m_type" property="mType" jdbcType="INTEGER" />
+    <result column="m_name" property="mName" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from seven_message
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ally.sevenmessage.bean.SevenMessage" >
+    insert into seven_message (id, m_type, m_name
+      )
+    values (#{id,jdbcType=INTEGER}, #{mType,jdbcType=INTEGER}, #{mName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.ally.sevenmessage.bean.SevenMessage" >
+    update seven_message
+    set m_type = #{mType,jdbcType=INTEGER},
+      m_name = #{mName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, m_type, m_name
+    from seven_message
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, m_type, m_name
+    from seven_message
+  </select>
+  <select id="selectDepart" resultMap="BaseResultMap" >
+    select id, m_name
+    from seven_message where m_type=0
+  </select>
+   <select id="selectPosition" resultMap="BaseResultMap" >
+    select id, m_name
+    from seven_message where m_type=1
+  </select>
+  <select id="selectName" resultType="java.lang.String">
+  	select m_name from seven_message where id=#{1}
+  </select>
+  <select id="getSevenMessageList" resultMap="BaseResultMap" >
+    select id, m_type, m_name
+    from seven_message
+    <where>
+    	<if test="mName != null and mName !=''">
+    		m_name like #{mName}
+    	</if>
+    	<if test="mType != null">
+    		and m_type = #{mType}
+    	</if>
+    </where>
+  </select>
+</mapper>

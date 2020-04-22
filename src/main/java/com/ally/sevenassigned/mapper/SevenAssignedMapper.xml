@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevenassigned.mapper.SevenAssignedMapper">
+	<resultMap id="BaseResultMap" type="com.ally.sevenassigned.bean.SevenAssigned">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="a_sid" property="aSid" jdbcType="INTEGER" />
+		<result column="a_datetime" property="aDatetime" jdbcType="TIMESTAMP" />
+		<result column="a_state" property="aState" jdbcType="INTEGER" />
+		<result column="a_work" property="aWork" jdbcType="LONGVARCHAR" />
+		<result column="a_remark" property="aRemark" jdbcType="LONGVARCHAR" />
+		<result column="a_read" property="aRead" jdbcType="INTEGER" />
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		seven_assigned
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.ally.sevenassigned.bean.SevenAssigned">
+		insert into seven_assigned
+		(id, a_sid, a_datetime,
+		a_state, a_work, a_remark,a_read
+		)
+		values
+		(#{id,jdbcType=INTEGER}, #{aSid,jdbcType=INTEGER},
+		#{aDatetime,jdbcType=TIMESTAMP},
+		#{aState,jdbcType=INTEGER},
+		#{aWork,jdbcType=LONGVARCHAR}, #{aRemark,jdbcType=LONGVARCHAR},#{aRead,jdbcType=INTEGER}
+		)
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="com.ally.sevenassigned.bean.SevenAssigned">
+		update
+		seven_assigned
+		set a_sid = #{aSid,jdbcType=INTEGER},
+		a_datetime =
+		#{aDatetime,jdbcType=TIMESTAMP},
+		a_state = #{aState,jdbcType=INTEGER},
+		a_work = #{aWork,jdbcType=LONGVARCHAR},
+		a_remark =#{aRemark,jdbcType=LONGVARCHAR},
+		a_read=#{aRead,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select id, a_sid, a_datetime, a_state, a_work, a_remark
+		from seven_assigned
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="getSevenAssignedList" resultMap="BaseResultMap">
+		select id, a_sid, a_datetime,
+		a_state, a_work, a_remark,a_read
+		from seven_assigned
+		<where>
+			<if test="aState != null">
+				a_state=#{aState}
+			</if>
+			<if test="aSid != null">
+				and a_sid = #{aSid}
+			</if>
+			<if test="aWork !=null and aWork !=''">
+				and a_work like #{aWork}
+			</if>
+		</where>
+		order by id desc
+	</select>
+	<update id="updateState" parameterType="com.ally.sevenassigned.bean.SevenAssigned">
+		update
+		seven_assigned
+		set 
+		a_state = #{aState,jdbcType=INTEGER},
+		a_remark =#{aRemark,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateReadStatus" parameterType="java.lang.Integer">
+		update
+		seven_assigned
+		set 
+		a_read =1
+		where id = #{id}
+	</update>
+	<select id="getIndexList" resultMap="BaseResultMap">
+		select id, a_sid, 
+		a_work
+		from seven_assigned
+		where a_sid=#{aSid} and  a_read = 0  order by a_datetime desc
+	</select>
+	<select id="getIndexCount" resultType="java.lang.Integer">
+		select count(*)
+		from seven_assigned
+		where a_sid=#{aSid} and  a_read = 0 
+	</select>
+</mapper>

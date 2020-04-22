@@ -1,0 +1,474 @@
+/*
+ * 框架
+ */
+.zyc_float{
+	overflow: auto;
+	zoom: 1;
+}
+.clear{
+	clear: both;
+}
+.zyc_float:after{
+	content: '';
+	clear: both;
+	display:block;
+    height:0;
+    overflow:hidden;
+    visibility:hidden;
+}
+
+.zyc_float>.zyc_left{
+	float: left;
+}
+
+.zyc_float>.zyc_right{
+	float: right;
+}
+
+.zyc_clear{
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.zyc_block_inle li{
+	display: inline-block;
+}
+
+/*
+*button
+*/
+
+.zyc_btn,
+button.zyc_btn,
+input[type=button].zyc_btn{
+	padding: 6px 15px;
+	border: none;
+	border-radius: 3px;
+	background: #DCDCDC;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.zyc_btn.zyc_btn_sm,
+button.zyc_btn.zyc_btn_sm,
+input[type=button].zyc_btn.zyc_btn_sm{
+	padding: 3px 8px;
+	font-size: 12px;
+}
+
+.zyc_btn.zyc_btn_big,
+button.zyc_btn.zyc_btn_big,
+input[type=button].zyc_btn.zyc_btn_big{
+	padding: 6px 12px;
+	font-size: 16px;
+	width: 200px;
+}
+
+.zyc_btn:active,
+input[type=button].zyc_btn:active,
+button.zyc_btn:active{
+	background-color: #D0D0D0;
+}
+
+.zyc_btn.zyc_btn_this,
+button.zyc_btn.zyc_btn_this,
+input[type=button].zyc_btn.zyc_btn_this{
+	border-bottom: 1.5px solid #3d98f0;
+	border-radius: 0;
+	padding-bottom: 10px;
+}
+
+button.zyc_btn.zyc_btn_this:active{
+	background-color: rgba(61,152,240,0.8);
+}
+
+.zyc_btn.zyc_ntn_blue{
+	background-color: #1565E2 !important;
+	color: #fff;
+}
+
+.zyc_btn.zyc_ntn_blue.zyc_btn_disabled,
+.zyc_btn.zyc_ntn_blue:active{
+	background-color: rgba(56,160,168,0.8) !important;
+}
+
+.zyc_btn.zyc_ntn_orange{
+	background-color: #FF851B !important;
+	color: #fff;
+}
+
+.zyc_btn.zyc_ntn_orange.zyc_btn_disabled,
+.zyc_btn.zyc_ntn_orange:active{
+	background-color: rgba(255,133,27,0.8) !important;
+}
+
+.zyc_btn.zyc_ntn_yellow{
+	background-color: #f1af09 !important;
+	color: #fff;
+}
+
+.zyc_btn.zyc_ntn_yellow.zyc_btn_disabled,
+.zyc_btn.zyc_ntn_yellow:active{
+	background-color: rgba(241,175,9,0.8) !important;
+}
+
+.zyc_btn.zyc_ntn_red{
+	background-color: #ff4500 !important;
+	color: #fff;
+}
+
+.zyc_btn.zyc_ntn_red.zyc_btn_disabled,
+.zyc_btn.zyc_ntn_red:active{
+	background-color: rgba(255,69,0,0.8) !important;
+}
+
+.zyc_btn.zyc_ntn_blove{
+	background-color: #00B894 !important;
+	color: #fff;
+}
+
+.zyc_btn.zyc_ntn_blove.zyc_btn_disabled,
+.zyc_btn.zyc_ntn_blove:active{
+	background-color: rgba(0,184,148,0.8) !important;
+}
+
+.zyc_btn_disabled{
+	cursor: not-allowed;
+}
+
+/*
+*zyc_input|zyc_select
+*/
+
+textarea.zyc_textarea,
+input.zyc_input,
+select.zyc_select{
+	border: 1px solid #ededed;
+	padding: 6px 0;
+	min-width: 200px;
+	color: #333;
+	outline: none;
+	width: 100%;
+}
+
+input.zyc_input.zyc_input_sm,
+select.zyc_select.zyc_select_sm{
+	padding: 3px 8px;
+	font-size: 12px;
+	min-width: 40px !important;
+}
+
+/*
+*zyc_tables
+*/
+
+.zyc_tables{
+	width: 100%;
+	font-size: 14px;
+	line-height: 28px;
+	color: #333;
+}
+
+.zyc_tables td{
+	padding: 5px;
+}
+
+.zyc_tables.zyc_boder{
+	border: 1px solid #ededed;
+}
+
+.zyc_tables.zyc_boder.zyc_striping,
+.zyc_tables.zyc_boder.zyc_vertical{
+	border: none;
+}
+
+.zyc_tables.zyc_boder.zyc_striping td,
+.zyc_tables.zyc_boder.zyc_striping th{
+	border-bottom: 1px solid #ededed;
+} 
+
+.zyc_tables.zyc_boder.zyc_striping>thead td,
+.zyc_tables.zyc_boder.zyc_striping>thead th{
+	border-top: 1px solid #ededed;
+}
+
+.zyc_tables.zyc_boder.zyc_vertical td,
+.zyc_tables.zyc_boder.zyc_vertical th{
+	border-left: 1px solid #ededed;
+}
+
+.zyc_tables.zyc_boder.zyc_vertical tr>td:last-child,
+.zyc_tables.zyc_boder.zyc_vertical tr>th:last-child{
+	border-right: 1px solid #ededed;
+}
+
+/*
+*checkbox、radio
+*/
+
+.zyc_checkbox,
+.zyc_radio{
+	min-width: 24px;
+	height: 24px;
+	padding: 0 0 5px 5px;
+	cursor: pointer;
+	float: left;
+	padding-right: 20px;
+}
+
+.zyc_checkbox input[type=checkbox],
+.zyc_radio input[type=radio]{
+	display: none;
+}
+
+.zyc_checkbox i,
+.zyc_radio i{
+	border: 1px solid #C2C2C2;
+	color: #fff;
+	background-color: #fff;
+	border-radius: 3px;
+}
+
+.zyc_radio i{
+	border-radius: 50% !important;
+}
+
+.zyc_checkbox.zyc_green.zyc_checked i,
+.zyc_radio.zyc_green.zyc_checked i{
+	background-color: #38a0a8;
+}
+
+/*
+*表单
+*/
+
+.zyc_form{
+	padding: 10px 0;
+}
+
+.zyc_form .zyc_form_line{
+	padding: 10px 0;
+	font-size: 14px;
+	line-height: 36px;
+	color: #999;
+}
+
+.zyc_form .zyc_form_line>.zyc_form_label{
+	color: #333;
+	line-height: 24px;
+	background-color: #FBFBFB;
+	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+	min-width: 110px;
+	text-align: center;
+	border: 1px solid #ededed;
+	border-right: 0;
+	padding: 6px 8px;
+}
+
+.zyc_form .zyc_form_line>.zyc_content{
+	border: 1px solid #ededed;
+	min-height: 36px;
+	min-width: 240px;
+	padding: 0 10px;
+}
+
+.zyc_form .zyc_form_line .zyc_input,
+.zyc_form .zyc_form_line .zyc_select,
+.zyc_form .zyc_form_line .zyc_textarea{
+	line-height: 22px;
+	font-size: 14px;
+	border: none;
+	width: 100% !important;
+}
+
+.zyc_form .zyc_form_line .zyc_textarea:focus{
+	outline: #fff;
+}
+
+.zyc_form .zyc_form_line>.zyc_validate_result{
+	padding: 0 10px;
+}
+
+.zyc_form .zyc_form_line .zyc_upload_img{
+	border: 1px solid #ededed;
+	padding: 5px;
+	width: 120px;
+	text-align: center;
+}
+
+.zyc_form .zyc_form_line .zyc_upload_img .layui-upload-list{
+	width: 120px;
+	height: 120px;
+	background-color: #FBFBFB;
+}
+
+.zyc_form .zyc_form_title{
+	font-size: 15px;
+	line-height: 36px;
+	padding: 10px;
+	color: #a6a6a6;
+	-moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+}
+
+.zyc_form .zyc_form_title i{
+	padding-left: 5px;
+	cursor: pointer;
+}
+
+.zyc_form .zyc_form_title i:hover,
+.zyc_form .zyc_form_title i:focus{
+	color: #007DDB;
+}
+
+/*
+*背景
+*/
+
+.zyc_bg{
+	padding: 5px 10px;
+	line-height: 20px;
+	font-size: 14px;
+}
+
+.zyc_bg_gray{
+	background-color: #ebeced;
+}
+
+.zyc_bg_74b9ff{
+	background-color: #74b9ff;
+}
+
+.zyc_bg_00cec9{
+	background-color: #00cec9;
+}
+
+.zyc_bg_00b894{
+	background-color: #00b894;
+}
+
+.zyc_bg_e17055{
+	background-color: #e17055;
+}
+
+.zyc_bg_fdcb6e{
+	background-color: #fdcb6e;
+}
+
+.zyc_bg_d63031{
+	background-color: #d63031;
+}
+
+.zyc_bg_6c5ce7{
+	background-color: #6c5ce7;
+}
+
+.zyc_bg_7efff5{
+	background-color: #7efff5;
+}
+
+.zyc_bg_3ae374{
+	background-color: #3ae374;
+}
+
+.zyc_bg_c56cf0{
+	background-color: #c56cf0;
+}
+
+/*
+*边框
+*/
+
+.zyc_boder_no{
+	border: none !important;
+}
+
+.zyc_boder{
+	border: 1px solid #ededed !important;
+}
+
+.zyc_boder_left{
+	border-left: 1px solid #ededed;
+}
+
+.zyc_boder_bottom{
+	border-bottom: 1px solid #ededed;
+}
+
+.zyc_boder_1{
+	border-width: 1px;
+}
+
+.zyc_boder_2{
+	border-width: 2px;
+}
+
+.zyc_boder_3{
+	border-width: 3px;
+}
+
+.zyc_boder_4{
+	border-width: 4px;
+}
+
+.zyc_boder_5{
+	border-width: 5px;
+}
+
+.zyc_boder_6{
+	border-width: 6px;
+}
+
+.zyc_boder_7{
+	border-width: 7px;
+}
+
+.zyc_boder_8{
+	border-width: 8px;
+}
+
+.zyc_boder_green{
+	border-color: #38a0a8;
+}
+
+/**
+ * 禁用
+ */
+.zyc_disabled{
+	event-pointers:none !important;
+	cursor: no-drop !important;
+	opacity: 0.6;
+	pointer-events: none !important;
+}
+
+/**
+ * 页脚
+ */
+#zyc_foot {
+	position: fixed;
+	width: 100%;
+	left: 0;
+	bottom: 0;
+	text-align: center;
+	background-color: #f8f8f9;
+	color: #a2a2a3;
+	font-size: 12px;
+	line-height: 20px;
+	border-top: 1px solid #DEDEDE;
+	padding: 5px 0;
+}
+
+#zyc_foot a {
+	text-decoration: none;
+	color: #a2a2a3;
+}
+
+#zyc_foot a:hover {
+	text-decoration: underline;
+	color: #3d98f0;
+}

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevenprofile.mapper.SevenProfileMapper" >
+  <resultMap id="BaseResultMap" type="com.ally.sevenprofile.bean.SevenProfile" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="p_fid" property="pFid" jdbcType="INTEGER" />
+    <result column="p_site" property="pSite" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from seven_profile
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ally.sevenprofile.bean.SevenProfile" >
+    insert into seven_profile (id, p_fid, p_site
+      )
+    values (#{id,jdbcType=INTEGER}, #{pFid,jdbcType=INTEGER}, #{pSite,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.ally.sevenprofile.bean.SevenProfile" >
+    update seven_profile
+    set p_fid = #{pFid,jdbcType=INTEGER},
+      p_site = #{pSite,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, p_fid, p_site
+    from seven_profile
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, p_fid, p_site
+    from seven_profile
+  </select>
+  <select id="getSevenProfileList" resultMap="BaseResultMap" >
+    select id, p_fid, p_site
+    from seven_profile
+    <where>
+    	<if test="pFid != null and pFid !=0">
+    		p_fid = #{pFid}
+    	</if>
+    </where>
+  </select>
+</mapper>

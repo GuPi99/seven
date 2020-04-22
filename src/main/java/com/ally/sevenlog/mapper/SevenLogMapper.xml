@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevenlog.mapper.SevenLogMapper" >
+  <resultMap id="BaseResultMap" type="com.ally.sevenlog.bean.SevenLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="l_ip" property="lIp" jdbcType="VARCHAR" />
+    <result column="l_type" property="lType" jdbcType="VARCHAR" />
+    <result column="l_datetime" property="lDatetime" jdbcType="TIMESTAMP" />
+    <result column="l_aid" property="lAid" jdbcType="INTEGER" />
+    <result column="l_content" property="lContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.ally.sevenlog.bean.SevenLog" >
+    insert into seven_log (id, l_ip, l_type, 
+      l_datetime, l_aid, l_content
+      )
+    values (#{id,jdbcType=INTEGER}, #{lIp,jdbcType=VARCHAR}, #{lType,jdbcType=VARCHAR}, 
+      #{lDatetime,jdbcType=TIMESTAMP}, #{lAid,jdbcType=INTEGER}, #{lContent,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  	<select id="getSevenLogList" resultMap="BaseResultMap">
+		select *
+		from seven_log
+		<where>
+			<if test="lDatetime != null and lDatetime != ''">
+				l_datetime like #{lDatetime}
+			</if>
+		</where>
+		order by id desc
+	</select>
+	<select id="getSevenLogSelfList" resultMap="BaseResultMap">
+		select *
+		from seven_log
+		 <where>
+			l_aid =#{lAid}
+			 <if test="lDatetime != null and lDatetime != ''">
+				and  l_datetime like '%'#{lDatetime}'%'
+			</if> 
+		</where>
+		order by id desc
+	</select>
+</mapper>

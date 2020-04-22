@@ -1,0 +1,96 @@
+.left{
+				float: left;
+			}
+			.right{
+				float: right;
+			}
+			.clear{
+				clear: both;
+			}
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			a{
+				text-decoration: none;
+			}
+			li{
+				list-style:none
+			}
+			.header{
+				height: 36px;
+				line-height: 36px;
+				padding: 5px 0;
+			}
+			.iconBlock{
+				padding-left: 20px;
+				padding-right: 10px;
+			}
+			.icon-14qingjiashenqing{
+				font-size: 24px;
+				color: #0183E6;
+			}
+			.layui-form-item{
+				height: 28px;
+				width: 300px;
+				clear: initial;
+			}
+			.layui-input-block{
+				min-height: 28px;
+				height: 28px;
+				margin-left: 30px;
+			}
+			.tooler input{
+				height: 28px;
+			}
+			.rili{
+				position:relative
+			}
+			#add,
+			#end{
+				padding-left: 30px
+			}
+			.riliIcon{
+				position: absolute;
+				top: 7px;
+				left: 10px;
+				color: #1C9EFE;
+			}
+			.tooler{
+				padding: 30px 0;
+			}
+			.searchBlock{
+				margin-left: 30px;
+			}
+			.searchBlock .layui-btn{
+				height: 28px;
+				line-height: 28px;
+				display: block;
+				border-radius: 8px;
+			}
+			.addBtn .layui-btn{
+				height: 28px;
+				line-height: 28px;
+				display: block;
+				border-radius: 8px;
+				margin-right: 100px;
+			}
+			.icon-chazhao{
+				padding-left: 5px;
+			}
+			.layui-table-view,
+			.layui-table-header{
+				border: 0;
+			}
+			.layui-table-view th{
+				border: 0;
+			}
+			.layui-table thead tr{
+				background: #DEF1FB;
+			}
+			.layui-table-tool{
+				border: 0;
+			}
+			.layui-table tbody td{
+				border-right: 0;
+			}

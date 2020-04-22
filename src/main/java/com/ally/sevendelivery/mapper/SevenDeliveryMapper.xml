@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevendelivery.mapper.SevenDeliveryMapper">
+	<resultMap id="BaseResultMap" type="com.ally.sevendelivery.bean.SevenDelivery">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="d_sid" property="dSid" jdbcType="INTEGER" />
+		<result column="project_num" property="projectNum" jdbcType="VARCHAR" />
+		<result column="project_name" property="projectName" jdbcType="VARCHAR" />
+		<result column="delivery_date" property="deliveryDate"
+			jdbcType="DATE" />
+		<result column="application_date" property="applicationDate"
+			jdbcType="TIMESTAMP" />
+		<result column="money_state" property="moneyState" jdbcType="INTEGER" />
+		<result column="application_state" property="applicationState"
+			jdbcType="INTEGER" />
+		<result column="d_branch_time" property="dBranchTime" jdbcType="TIMESTAMP" />
+		<result column="d_director_time" property="dDirectorTime"
+			jdbcType="TIMESTAMP" />
+		<result column="d_manager_time" property="dManagerTime"
+			jdbcType="TIMESTAMP" />
+		<result column="d_branch" property="dBranch" jdbcType="LONGVARCHAR" />
+		<result column="d_director" property="dDirector" jdbcType="LONGVARCHAR" />
+		<result column="d_manager" property="dManager" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<insert id="insert" parameterType="com.ally.sevendelivery.bean.SevenDelivery">
+		insert into seven_delivery (id, d_sid, project_num,
+		project_name, delivery_date, application_date,
+		money_state, application_state, d_branch_time,
+		d_director_time, d_manager_time, d_branch,
+		d_director, d_manager)
+		values (#{id,jdbcType=INTEGER}, #{dSid,jdbcType=INTEGER},
+		#{projectNum,jdbcType=VARCHAR},
+		#{projectName,jdbcType=VARCHAR}, #{deliveryDate,jdbcType=DATE}, #{applicationDate,jdbcType=TIMESTAMP},
+		#{moneyState,jdbcType=INTEGER}, #{applicationState,jdbcType=INTEGER},
+		#{dBranchTime,jdbcType=TIMESTAMP},
+		#{dDirectorTime,jdbcType=TIMESTAMP},
+		#{dManagerTime,jdbcType=TIMESTAMP}, #{dBranch,jdbcType=LONGVARCHAR},
+		#{dDirector,jdbcType=LONGVARCHAR}, #{dManager,jdbcType=LONGVARCHAR})
+	</insert>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select id, d_sid, project_num, project_name, delivery_date,
+		application_date, money_state,
+		application_state, d_branch_time, d_director_time, d_manager_time, d_branch, d_director,
+		d_manager
+		from seven_delivery
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<update id="addBranch" parameterType="com.ally.sevendelivery.bean.SevenDelivery">
+		update seven_delivery
+		set
+		application_state = #{applicationState,jdbcType=INTEGER},
+		d_branch_time = #{dBranchTime,jdbcType=TIMESTAMP},
+		d_branch = #{dBranch,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="addDirector" parameterType="com.ally.sevendelivery.bean.SevenDelivery">
+		update seven_delivery
+		set
+		application_state = #{applicationState,jdbcType=INTEGER},
+		d_director_time = #{dDirectorTime,jdbcType=TIMESTAMP},
+		d_director = #{dDirector,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="addManger" parameterType="com.ally.sevendelivery.bean.SevenDelivery">
+		update seven_delivery
+		set
+		application_state = #{applicationState,jdbcType=INTEGER},
+		d_manager_time = #{dManagerTime,jdbcType=TIMESTAMP},
+		d_manager = #{dManager,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="getSevenDeliveryList" resultMap="BaseResultMap">
+		select id, d_sid, project_num, project_name, delivery_date,
+		application_date, money_state,
+		application_state, d_branch_time, d_director_time, d_manager_time, d_branch, d_director,
+		d_manager
+		from seven_delivery
+		<where>
+			<if test="dSid != null">
+				d_sid = #{dSid}
+			</if>
+			<if test="applicationState != null">
+				and application_state= #{applicationState}
+			</if>
+			<if test="projectNum != null and projectNum !=''">
+				and project_num like #{projectNum}
+			</if>
+			<if test="projectName != null and projectName !=''">
+				and project_name like #{projectName}
+			</if>
+			<if test="applicationDate != null and applicationDate != ''">
+				and application_date like #{applicationDate}
+			</if>
+		</where>
+		order by id desc
+	</select>
+</mapper>

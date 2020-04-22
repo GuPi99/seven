@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevenplan.mapper.SevenPlanMapper">
+	<resultMap id="BaseResultMap" type="com.ally.sevenplan.bean.SevenPlan">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="p_eid" property="pEid" jdbcType="INTEGER" />
+		<result column="p_date" property="pDate" jdbcType="DATE" />
+		<result column="p_is" property="pIs" jdbcType="INTEGER" />
+		<result column="p_vehicle" property="pVehicle" jdbcType="VARCHAR" />
+		<result column="p_fid" property="pFid" jdbcType="INTEGER" />
+		<result column="p_goal" property="pGoal" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from seven_plan
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.ally.sevenplan.bean.SevenPlan">
+		insert into seven_plan (id, p_eid, p_date,
+		p_is, p_vehicle, p_fid,
+		p_goal)
+		values (#{id,jdbcType=INTEGER}, #{pEid,jdbcType=INTEGER},
+		#{pDate,jdbcType=DATE},
+		#{pIs,jdbcType=INTEGER}, #{pVehicle,jdbcType=VARCHAR}, #{pFid,jdbcType=INTEGER},
+		#{pGoal,jdbcType=LONGVARCHAR})
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="com.ally.sevenplan.bean.SevenPlan">
+		update seven_plan
+		set p_eid = #{pEid,jdbcType=INTEGER},
+		p_date = #{pDate,jdbcType=DATE},
+		p_is = #{pIs,jdbcType=INTEGER},
+		p_vehicle = #{pVehicle,jdbcType=VARCHAR},
+		p_fid = #{pFid,jdbcType=INTEGER},
+		p_goal = #{pGoal,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select id, p_eid, p_date, p_is, p_vehicle, p_fid, p_goal
+		from seven_plan
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, p_eid, p_date, p_is, p_vehicle, p_fid, p_goal
+		from seven_plan
+	</select>
+	<select id="getSevenPlanList" resultMap="BaseResultMap">
+		select id, p_eid, p_date, p_is, p_vehicle, p_fid, p_goal
+		from seven_plan
+		<where>
+			<if test="pEid != null and pEid != 0">
+				p_eid = #{pEid}
+			</if>
+		</where>
+		order by id desc
+	</select>
+</mapper>

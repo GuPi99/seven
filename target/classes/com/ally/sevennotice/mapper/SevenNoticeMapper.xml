@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ally.sevennotice.mapper.SevenNoticeMapper" >
+  <resultMap id="BaseResultMap" type="com.ally.sevennotice.bean.SevenNotice" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="dispatch_number" property="dispatchNumber" jdbcType="VARCHAR" />
+    <result column="draft_id" property="draftId" jdbcType="INTEGER" />
+    <result column="draft_date" property="draftDate" jdbcType="DATE" />
+    <result column="nation_file_id" property="nationFileId" jdbcType="INTEGER" />
+    <result column="text" property="text" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from seven_notice
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ally.sevennotice.bean.SevenNotice" >
+    insert into seven_notice (id, title, dispatch_number, 
+      draft_id, draft_date, nation_file_id, 
+      text)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{dispatchNumber,jdbcType=VARCHAR}, 
+      #{draftId,jdbcType=INTEGER}, #{draftDate,jdbcType=DATE}, #{nationFileId,jdbcType=INTEGER}, 
+      #{text,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.ally.sevennotice.bean.SevenNotice" >
+    update seven_notice
+    set title = #{title,jdbcType=VARCHAR},
+      dispatch_number = #{dispatchNumber,jdbcType=VARCHAR},
+      draft_id = #{draftId,jdbcType=INTEGER},
+      draft_date = #{draftDate,jdbcType=DATE},
+      nation_file_id = #{nationFileId,jdbcType=INTEGER},
+      text = #{text,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, title, dispatch_number, draft_id, draft_date, nation_file_id, text
+    from seven_notice
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="getSevenNoticeList" resultMap="BaseResultMap" >
+    select id, title, dispatch_number, draft_id, draft_date, nation_file_id, text
+    from seven_notice
+    <where>
+    	<if test="title!=null and title != ''">
+    		title like #{title}
+    	</if>
+    </where>
+    order by id desc
+  </select>
+  <select id="getIndexList" resultMap="BaseResultMap" >
+    select  title, dispatch_number, draft_date
+    from seven_notice 
+    order by id desc limit 5
+  </select>
+</mapper>

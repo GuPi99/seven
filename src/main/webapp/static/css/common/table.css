@@ -1,0 +1,49 @@
+.zyc_content{
+	background-color: #fff;
+	margin: 8px 15px;
+	padding: 20px;
+}
+
+.zyc_page li,
+.zyc_handle li,
+.zyc_query li{
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 15px;
+}
+
+.zyc_table{
+	margin: 15px 0;
+}
+
+.layui-table th{
+	text-align: center !important; 
+}
+
+.layui-table th:first-child,
+.layui-table td:first-child{
+	box-shadow: 0px 2px 15px rgba(40, 47, 62, 0.08);
+}
+
+.zyc_page{
+	margin-top: 35px;
+}
+
+.zyc_page_select select{
+	border: 1px solid #cdcdcd;
+	height: 25px;
+	line-height: 25px;
+}
+
+.zyc_page li{
+	cursor: pointer;
+	color: #494949;
+}
+
+.zyc_page li button{
+	padding: 0 12px;
+}
+
+.zyc_page li>button:active i{
+	color: #CDCDCD;
+}

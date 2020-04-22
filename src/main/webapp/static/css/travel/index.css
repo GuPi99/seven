@@ -1,0 +1,93 @@
+.left{
+				float: left;
+			}
+			.right{
+				float: right;
+			}
+			.clear{
+				clear: both;
+			}
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			a{
+				text-decoration: none;
+			}
+			li{
+				list-style:none
+			}
+			.top{
+				border-bottom: 2px solid #E3E3E4;
+				padding-bottom: 30px;
+			}
+			.topBtn{
+				padding:20px 30px 10px;
+				border-bottom: 2px solid #E3E3E4;
+				margin-bottom: 50px;
+				line-height: 40px;
+			}
+			.btn{
+				float: right;
+			}
+			.btn button{
+				background: #1E9EFE;
+				border-radius: 7px;
+				width: 50px;
+				height: 28px;
+				line-height: 28px;
+				text-align: center;
+				padding: 0;
+			}
+			.icon-chucha{
+				font-size: 28px;
+				color: #0183E6;
+			}
+			.titleBg{
+				border-left: 2px solid #979696;
+			}
+			.layui-form-item{
+				height: 28px;
+				width: 300px;
+				clear: initial;
+			}
+			.layui-input-block{
+				min-height: 28px;
+				height: 28px;
+			}
+			.layui-form-label{
+				padding: 4px 15px;
+			}
+			.layui-input-block input{
+				height: 100%;
+			}
+			#test1,
+			#add1,
+			#add2,
+			#add3,
+			#add4,
+			#end1,
+			#end2,
+			#end3,
+			#end4{
+				padding-left: 30px
+			}
+			.rili{
+				position:relative
+			}
+			.riliIcon{
+				position: absolute;
+				top: 7px;
+				left: 10px;
+				color: #1C9EFE;
+			}
+			.footTitle{
+				padding: 50px 0 10px;
+				margin-bottom: 30px;
+				border-bottom: 2px solid #E3E3E4;
+			}
+			.layui-form-label span{
+				display: inline-block;
+				vertical-align: middle;
+				color: red;
+			}
