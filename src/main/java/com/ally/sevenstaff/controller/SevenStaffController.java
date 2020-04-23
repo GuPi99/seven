@@ -283,7 +283,11 @@ public class SevenStaffController {
 		StaffMsg sMsg =new StaffMsg();
 		sMsg.setSevenMessage(sevenMessage);
 		sMsg.setSevenStaff(sevenStaff);
-		sMsg.setiUrl(sevenPrint.getpUrl());
+		if (sevenPrint==null) {
+			sMsg.setiUrl("/resource/sevenPrint/head.jpg");
+		} else {
+			sMsg.setiUrl(sevenPrint.getpUrl());
+		}
 		map.put("status", 0);
 		map.put("data", sMsg);
 		return map;
