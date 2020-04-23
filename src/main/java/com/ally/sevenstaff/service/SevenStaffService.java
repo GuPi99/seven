@@ -23,6 +23,4 @@ public interface SevenStaffService {
 
 	List<SevenStaff> selectNoAccount();
 
-	PageInfo<SevenStaff> getBookList(Integer page, Integer limit, String sName);
-
 }

@@ -58,6 +58,13 @@
 						</div>
 						<div class="zyc_verify" data-name="s_phone"></div>
 					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label"><span>*</span>办公电话 : </label>
+						<div class="layui-input-block">
+							<input type="text" name="officePhone" placeholder="请输入办公电话 " class="layui-input">
+						</div>
+						<div class="zyc_verify" data-name="s_address"></div>
+					</div>
 				</div>
 				<div class="layui-col-sm4">
 					<div class="layui-form-item">
@@ -75,6 +82,13 @@
 							<input type="email" name="sEmail" placeholder="请输入员工联系邮箱" class="layui-input">
 						</div>
 						<div class="zyc_verify" data-name="s_email"></div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label"><span>*</span>传真 : </label>
+						<div class="layui-input-block">
+							<input type="text" name="faxNum" placeholder="请输入传真" class="layui-input">
+						</div>
+						<div class="zyc_verify" data-name="s_address"></div>
 					</div>
 				</div>
 				<div class="layui-col-sm4">

@@ -61,5 +61,4 @@ public class SevenOfficeServiceImpl implements SevenOfficeService {
 		return sevenOfficeMapper.updateBeforeOffice(id,oOffice)>0;
 	}
 
-
 }

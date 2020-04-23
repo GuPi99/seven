@@ -102,6 +102,7 @@ D:\workspace\four\seven\src\main\java\com\ally\sevenplan\mapper\SevenPlanMapper.
 D:\workspace\four\seven\src\main\java\com\ally\util\NoCacheFilter.java
 D:\workspace\four\seven\src\main\java\com\ally\sevenProjectCheck\service\SevenProjectCheckServiceImpl.java
 D:\workspace\four\seven\src\main\java\com\ally\sevenprofile\bean\SevenProfile.java
+D:\workspace\four\seven\src\main\java\com\ally\sevenstaff\bean\StaffMsg.java
 D:\workspace\four\seven\src\main\java\com\ally\sevenstaff\service\SevenStaffServiceImpl.java
 D:\workspace\four\seven\src\main\java\com\ally\sevenbank\controller\SevenBankController.java
 D:\workspace\four\seven\src\main\java\com\ally\sevengoods\bean\SevenGoods.java

@@ -24,6 +24,14 @@
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/form/form.css" />
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/fonts/iconfont.css"/>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/plan/adday.css"/>
+		<style>
+			.desc{
+				padding: 10px;
+				border: 1px solid #D2D2D2;
+				margin-left: 15px;
+				min-height: 100px;
+			}
+		</style>
 </head>
 <body>
 <!-- 页面内容——开始 -->
@@ -43,7 +51,7 @@
 				</div>
 				<div class="layui-form-item" style="width: 640px">
 					<label class="layui-form-label">
-						<div class="titleBg"><span>*</span>拜访日期 : </div>
+						<div class="titleBg"><span>*</span>计划日期 : </div>
 					</label>
 					<div class="layui-input-block rili" style="width: 500px">
 						<input type="text" name="dpDate" disabled class="layui-input" id="time">
@@ -53,7 +61,9 @@
 					<label class="layui-form-label">
 						<div class="titleBg"><span>*</span>计划内容 : </div>
 					</label>
-					<textarea id="content" class="layui-textarea" disabled name="dpWork" ></textarea>
+					<div class="desc" id='desc'>
+					
+					</div>
 				</div>
 			</form>
 			<!-- 表单——结束 -->
@@ -70,7 +80,7 @@
 				var form=layui.form;
 				var url='${pageContext.request.contextPath}/sevenDailyPlan/getSelectDay?id='+id;
 				form.on('submit(formDemo)',function(){
-				     $("#open",parent.document).attr('src','${pageContext.request.contextPath}/sevenDailyPlan/selfDay');
+				     $("#open",parent.document).attr('src','${pageContext.request.contextPath}/sevenDailyPlan/AllDay');
 				     return false;
 				})
 				$.ajax({
@@ -78,7 +88,7 @@
 					dataType:'json',
 					success:function(str){
 						$('#time').val(str['data']['dpDate']);
-						$('#content').val(str['data']['dpWork']);
+						$('#desc').html(str['data']['dpWork'])
 					}
 				})
 				function getid(name){

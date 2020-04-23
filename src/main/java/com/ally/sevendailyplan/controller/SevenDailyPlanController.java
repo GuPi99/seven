@@ -35,12 +35,13 @@ public class SevenDailyPlanController {
 	}
 	
 	/*
-	 * 跳转到列表页
+	 * 跳转到个人列表页
 	 */
 	@RequestMapping("/selfIndex")
 	public String selfIndex() {
 		return "view/sevenDailyPlan/self-index";
 	}
+	
 	
 	/*
 	 * 跳转到日列表页
@@ -50,6 +51,14 @@ public class SevenDailyPlanController {
 		return "view/sevenDailyPlan/self-day";
 	}
 	
+	/*
+	 * 跳转到日列表页
+	 */
+	@RequestMapping("/AllDay")
+	public String AllDay() {
+		return "view/sevenDailyPlan/all-day";
+	}
+	
 	
 	/*
 	 * 跳转到日添加页
@@ -57,6 +66,14 @@ public class SevenDailyPlanController {
 	@RequestMapping("/toDayAdd")
 	public String toDayAdd() {
 		return "view/sevenDailyPlan/sevenDailyPlan-dayAdd";
+	}
+	
+	/*
+	 * 跳转到个人日查看页
+	 */
+	@RequestMapping("/toDaySelfSelect")
+	public String toDaySelfSelect() {
+		return "view/sevenDailyPlan/day-selectself";
 	}
 	
 	/*
@@ -136,8 +153,6 @@ public class SevenDailyPlanController {
 		}
 	}
 	
-
-	
 	 /* 查看员工日常工作计划
 	 */
 	@ResponseBody
@@ -153,11 +168,11 @@ public class SevenDailyPlanController {
 	 * 分页查询员工日常工作计划
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/getSevenDailyPlanList", method = RequestMethod.GET)
-	public Map<String, Object> getSevenDailyPlanList(@RequestParam(required = true, defaultValue = "1") Integer page,
-			Integer limit, Integer dpSid, Integer dpType, String dpDate) {
+	@RequestMapping(value = "/getAllDayList", method = RequestMethod.GET)
+	public Map<String, Object> getAllDayList(@RequestParam(required = true, defaultValue = "1") Integer page,
+			Integer limit, Integer dpSid, Integer dpWhere, String dpDate) {
 		Map<String, Object> map = new HashMap<>();
-		PageInfo<SevenDailyPlan> list = sevenDailyPlanService.getSevenDailyPlanList(page, limit, dpSid, dpType, dpDate);
+		PageInfo<SevenDailyPlan> list = sevenDailyPlanService.getAllDayList(page, limit, dpSid, dpWhere,dpDate);
 		if (list==null) {
 			map.put("data", null);
 			map.put("count", null);
@@ -165,7 +180,7 @@ public class SevenDailyPlanController {
 			map.put("data", list.getList());
 			map.put("count", list.getTotal());
 		}
-		map.put("status", 0);
+		map.put("code", 0);
 		map.put("message", "成功");
 		return map;
 	}

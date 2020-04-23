@@ -35,19 +35,20 @@
     from seven_daily_plan
     where id = #{id,jdbcType=INTEGER}
   </select>
-   <select id="getSevenDailyPlanList" resultMap="BaseResultMap" >
+   <select id="getAllDayList" resultMap="BaseResultMap" >
     select id, dp_sid, dp_date, dp_type, dp_work,dp_where,dp_eid
     from seven_daily_plan
     <where>
     	<if test="dpSid != null">
     		dp_sid = #{dpSid}
     	</if>
-    	<if test="dpType != null">
-    		and dp_type = #{dpType}
+    	<if test="dpWhere != null">
+    		and dp_where = #{dpWhere}
     	</if>
     	<if test="dpDate != null and dpDate != ''">
     		and dp_date like #{dpDate}
     	</if>
+    	and dp_type=1
     </where>
     order by id desc
   </select>

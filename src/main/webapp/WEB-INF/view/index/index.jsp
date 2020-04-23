@@ -170,7 +170,7 @@
 			}
 			function msg(id){
 				var id=id;
-				var str='msg.html?id='+id;
+				var str='${pageContext.request.contextPath}/sevenStaff/msg?id='+id;
 				layui.use('layer', function(){
 					var layer = layui.layer;
 					layer.open({
@@ -178,7 +178,7 @@
 						content:str,
 						area : ['1200px', '800px'],
 						maxmin : true,
-						title : '修改密码'
+						title : '个人资料'
 					})
 				})
 			}

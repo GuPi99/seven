@@ -51,11 +51,10 @@ public class SevenDailyPlanServiceImpl implements SevenDailyPlanService {
 	}
 
 	@Override
-	public PageInfo<SevenDailyPlan> getSevenDailyPlanList(Integer pageNum, Integer pageSize, Integer dpSid, Integer dpType,
-			String dpDate) {
+	public PageInfo<SevenDailyPlan> getAllDayList(Integer pageNum, Integer pageSize, Integer dpSid,Integer dpWhere,String dpDate) {
 		// TODO Auto-generated method stub
 		PageHelper.startPage(pageNum, pageSize);
-		List<SevenDailyPlan> list = sevenDailyPlanMapper.getSevenDailyPlanList(dpSid,dpType,"%"+dpDate+"%");
+		List<SevenDailyPlan> list = sevenDailyPlanMapper.getAllDayList(dpSid,dpWhere,"%"+dpDate+"%");
 		for (SevenDailyPlan sevenDailyPlan : list) {
 			if (sevenDailyPlan.getDpWhere()!=1) {
 				sevenDailyPlan.setSevenEvection(sevenEvectionMapper.selectByPrimaryKey(sevenDailyPlan.getDpEid()));

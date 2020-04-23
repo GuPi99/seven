@@ -43,6 +43,11 @@ layui.use(['form', 'layer', 'table'], function() {
 					cellMinWidth: 150,
 					align:'center'
 				}, {
+					field: 'mDesc',
+					title: '描述',
+					cellMinWidth: 150,
+					align:'center'
+				}, {
 					field: '',
 					title: '操作',
 					width: 250,

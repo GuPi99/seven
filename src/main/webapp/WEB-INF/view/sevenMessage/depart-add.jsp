@@ -55,6 +55,16 @@
 					<!-- 验证信息展示处，data-name对应验证数据 -->
 					<div class="zyc_verify" data-name="m_name"></div>
 				</div>
+				<div class="layui-form-item">
+					<!-- *表示必填，非必填项可将span标签删除 -->
+					<label class="layui-form-label"><span>*</span>部门职责: </label>
+					<!-- 输入框或下拉框 -->
+					<div class="layui-input-block">
+						<input type="text" name="mDesc" placeholder="请输入部门职责" class="layui-input">
+					</div>
+					<!-- 验证信息展示处，data-name对应验证数据 -->
+					<div class="zyc_verify" data-name="m_name"></div>
+				</div>
 				<!-- 表单XX信息——结束 -->
 				
 				<!-- 提交按钮——开始 -->

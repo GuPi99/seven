@@ -106,7 +106,7 @@
 				table.on('tool(test)', function(obj){
 					var data = obj.data;
 					if(obj.event === 'detail'){
-						$("#open",parent.document).attr('src','${pageContext.request.contextPath}/sevenDailyPlan/toDaySelect?id='+data.id);
+						$("#open",parent.document).attr('src','${pageContext.request.contextPath}/sevenDailyPlan/toDaySelfSelect?id='+data.id);
 					}
 				});
 				function search(url,data){

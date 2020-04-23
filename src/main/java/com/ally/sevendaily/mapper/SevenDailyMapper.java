@@ -17,8 +17,8 @@ public interface SevenDailyMapper {
 
     int updateByPrimaryKey(SevenDaily record);
 
-	List<SevenDaily> getSevenDailyList(@Param("dSid")Integer dSid,@Param("dType")Integer dType, @Param("dDate")String string);
-
 	List<SevenDaily> getTrendList(Integer oSid);
+
+	List<SevenDaily> getSevenDailyList(@Param("dSid")Integer dSid, @Param("dDate")String string);
 
 }

@@ -26,6 +26,4 @@ public interface SevenStaffMapper {
 	List<SevenStaff> getSevenStaffList(@Param("sSex")Integer sSex, @Param("sName")String string,@Param("sDateBirth") String string2);
 
 	List<SevenStaff> selectNoAccount();
-
-	List<SevenStaff> getBookList(@Param("sName")String string);
 }

@@ -15,7 +15,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ally.sevenaccount.bean.SevenAccount;
+import com.ally.sevenmessage.bean.SevenMessage;
+import com.ally.sevenmessage.service.SevenMessageService;
+import com.ally.sevenoffice.bean.SevenOffice;
+import com.ally.sevenoffice.service.SevenOfficeService;
+import com.ally.sevenprint.bean.SevenPrint;
+import com.ally.sevenprint.service.SevenPrintService;
 import com.ally.sevenstaff.bean.SevenStaff;
+import com.ally.sevenstaff.bean.StaffMsg;
 import com.ally.sevenstaff.service.SevenStaffService;
 import com.ally.util.ArchivesLog;
 import com.github.pagehelper.PageInfo;
@@ -26,6 +33,12 @@ public class SevenStaffController {
 
 	@Autowired
 	private SevenStaffService sevenStaffService;
+	@Autowired
+	private SevenMessageService sevenMessageService;
+	@Autowired
+	private SevenOfficeService sevenOfficeService;
+	@Autowired
+	private SevenPrintService sevenPrintService;
 	
 	/*
 	 * 跳转到列表页
@@ -36,11 +49,11 @@ public class SevenStaffController {
 	}
 	
 	/*
-	 * 跳转到通讯录列表页
+	 * 跳转到列表页
 	 */
-	@RequestMapping("/bookIndex")
-	public String bookIndex() {
-		return "view/sevenStaff/bookIndex";
+	@RequestMapping("/msg")
+	public String msg() {
+		return "view/index/msg";
 	}
 	
 	
@@ -236,6 +249,28 @@ public class SevenStaffController {
 		}
 		map.put("status", 0);
 		map.put("message", "成功");
+		return map;
+	}
+	
+	/*
+	 * 个人信息展示
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/selectPersonal", method = RequestMethod.GET)
+	public Map<String, Object> selectPersonal(HttpSession session) {
+		Map<String, Object> map = new HashMap<>();
+		SevenStaff sevenStaff=null;
+		SevenAccount sevenAccount = (SevenAccount) session.getAttribute("account");
+		sevenStaff= sevenStaffService.selectSevenStaffById(sevenAccount.getaSid());
+		SevenOffice sevenOffice=sevenOfficeService.selectBefore(sevenStaff.getId());
+		SevenMessage sevenMessage = sevenMessageService.selectSevenMessageById(sevenOffice.getoPost());
+		SevenPrint sevenPrint = sevenPrintService.selectSevenPrint(sevenAccount.getaPid());
+		StaffMsg sMsg =new StaffMsg();
+		sMsg.setSevenMessage(sevenMessage);
+		sMsg.setSevenStaff(sevenStaff);
+		sMsg.setiUrl(sevenPrint.getpUrl());
+		map.put("status", 0);
+		map.put("data", sMsg);
 		return map;
 	}
 	

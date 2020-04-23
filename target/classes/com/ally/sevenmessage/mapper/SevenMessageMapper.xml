@@ -5,25 +5,25 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="m_type" property="mType" jdbcType="INTEGER" />
     <result column="m_name" property="mName" jdbcType="VARCHAR" />
+    <result column="m_desc" property="mDesc" jdbcType="VARCHAR" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from seven_message
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.ally.sevenmessage.bean.SevenMessage" >
-    insert into seven_message (id, m_type, m_name
-      )
-    values (#{id,jdbcType=INTEGER}, #{mType,jdbcType=INTEGER}, #{mName,jdbcType=VARCHAR}
-      )
+    insert into seven_message (id, m_type, m_name,m_desc)
+    values (#{id,jdbcType=INTEGER}, #{mType,jdbcType=INTEGER}, #{mName,jdbcType=VARCHAR},#{mDesc,jdbcType=VARCHAR} )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.ally.sevenmessage.bean.SevenMessage" >
     update seven_message
     set m_type = #{mType,jdbcType=INTEGER},
-      m_name = #{mName,jdbcType=VARCHAR}
+      m_name = #{mName,jdbcType=VARCHAR},
+      m_desc = #{mDesc,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select id, m_type, m_name
+    select id, m_type, m_name,m_desc
     from seven_message
     where id = #{id,jdbcType=INTEGER}
   </select>
@@ -43,7 +43,7 @@
   	select m_name from seven_message where id=#{1}
   </select>
   <select id="getSevenMessageList" resultMap="BaseResultMap" >
-    select id, m_type, m_name
+    select id, m_type, m_name,m_desc
     from seven_message
     <where>
     	<if test="mName != null and mName !=''">

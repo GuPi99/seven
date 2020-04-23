@@ -92,13 +92,5 @@ public class SevenStaffServiceImpl implements SevenStaffService {
 		return sevenStaffMapper.selectNoAccount();
 	}
 
-	@Override
-	public PageInfo<SevenStaff> getBookList(Integer pageNum, Integer pageSize, String sName) {
-		// TODO Auto-generated method stub
-		PageHelper.startPage(pageNum, pageSize);
-		List<SevenStaff> list = sevenStaffMapper.getBookList( "%" + sName + "%");
-		PageInfo<SevenStaff> info = new PageInfo<>(list, 10);
-		return info;
-	}
 
 }

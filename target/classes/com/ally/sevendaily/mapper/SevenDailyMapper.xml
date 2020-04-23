@@ -38,18 +38,16 @@
 		from seven_daily
 	</select>
 	<select id="getSevenDailyList" resultMap="BaseResultMap">
-		select id, d_sid, d_date,d_type,d_work
+		select id, d_sid, d_date,d_work
 		from seven_daily
 		<where>
 			<if test="dSid != null">
 				d_sid = #{dSid}
 			</if>
-			<if test="dType != null">
-				and d_type = #{dType}
-			</if>
 			<if test="dDate != null and dDate != ''">
 				and d_date like #{dDate}
 			</if>
+			and d_type=1
 		</where>
 		order by id desc
 	</select>

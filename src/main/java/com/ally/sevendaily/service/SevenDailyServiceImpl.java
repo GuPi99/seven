@@ -47,23 +47,23 @@ public class SevenDailyServiceImpl implements SevenDailyService {
 	}
 
 	@Override
-	public PageInfo<SevenDaily> getSevenDailyList(Integer pageNum, Integer pageSize, Integer dSid,Integer dType, String dDate) {
-		// TODO Auto-generated method stub
-		PageHelper.startPage(pageNum, pageSize);
-		List<SevenDaily> list = sevenDailyMapper.getSevenDailyList(dSid,dType,"%"+dDate+"%");
-		for (SevenDaily sevenDaily : list) {
-			sevenDaily.setStaffName(sevenStaffMapper.selectName(sevenDaily.getdSid()));
-		}
-		PageInfo<SevenDaily> info = new PageInfo<>(list, 10);
-		return info;
-	}
-
-	@Override
 	public PageInfo<SevenDaily> getTrendList(Integer pageNum, Integer pageSize, Integer oSid) {
 		// TODO Auto-generated method stub
 		PageHelper.startPage(pageNum,pageSize);
 		List<SevenDaily> list = sevenDailyMapper.getTrendList(oSid);
 		PageInfo<SevenDaily> info=new PageInfo<>(list,10);
+		return info;
+	}
+
+	@Override
+	public PageInfo<SevenDaily> getDayDailyList(Integer pageNum, Integer pageSize, Integer dSid, String dDate) {
+		// TODO Auto-generated method stub
+		PageHelper.startPage(pageNum, pageSize);
+		List<SevenDaily> list = sevenDailyMapper.getSevenDailyList(dSid,"%"+dDate+"%");
+		for (SevenDaily sevenDaily : list) {
+			sevenDaily.setStaffName(sevenStaffMapper.selectName(sevenDaily.getdSid()));
+		}
+		PageInfo<SevenDaily> info = new PageInfo<>(list, 10);
 		return info;
 	}
 

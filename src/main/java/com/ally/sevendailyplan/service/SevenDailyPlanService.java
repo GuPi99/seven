@@ -13,8 +13,7 @@ public interface SevenDailyPlanService {
 
 	SevenDailyPlan selectSevenDailyPlanById(Integer id);
 
-	PageInfo<SevenDailyPlan> getSevenDailyPlanList(Integer page, Integer limit, Integer dpSid, Integer dpType,
-			String dpDate);
+	PageInfo<SevenDailyPlan> getAllDayList(Integer page, Integer limit, Integer dpSid, Integer dpWhere,String dpDate);
 
 	PageInfo<SevenDailyPlan> getSelfDayList(Integer page, Integer limit, Integer getaSid, Integer dpWhere,
 			String dpDate);

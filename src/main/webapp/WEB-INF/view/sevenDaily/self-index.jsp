@@ -6,7 +6,7 @@
 		<meta name="robots" content="noindex, nofollow">
 		<meta charset="utf-8">
 		<link rel="shortcut icon" href="${pageContext.request.contextPath}/static/img/favicon.ico" />
-		<title>员工工作报告</title>
+		<title>工作计划</title>
 		<meta name="renderer" content="webkit">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -19,67 +19,112 @@
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/js/common/layui/css/layui.css" />
 		<!-- 表格样式文件 -->
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/common/table.css" />
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/plan/plan.css"/>
+		<style>
+			.layui-tab-content{
+				padding: 0;
+				padding-top: 20px;
+			}
+			#id{
+				height: 500px !important;
+			}
+		</style>
 	</head>
 	<body>
 		<!-- 页面内容——开始 -->
-		<div id="app">
-			<div class="zyc_content">
-				<!-- 页面内容：头部——开始 -->
-				<!-- 页面内容：头部——查询框 开始 -->
-				<ul class="zyc_query zyc_clear">
-					<form class="layui-form" id="zyc_search" style="display: inline-block;">
-						<!-- 页面内容：头部——查询框或下拉框 开始 -->
-						<li>
-							<div class="layui-form-item">
-								<select name="dType" lay-filter="caidan" lay-search>
-									<option value="">全部类型</option>
-									<option value="1">日报</option>
-									<option value="2">月报</option>
-									<option value="3">季报</option>
-								</select>
-							</div>
-						</li>
-						<li>
-							<div class="layui-form-item">
-								<input type="text" name="dDate" placeholder="请选择日期" autocomplete="off" class="layui-input date">
-							</div>
-						</li>
-						<!-- 页面内容：头部——查询框或下拉框 结束 -->
-					</form>
-					<!-- 页面内容：头部——查询按钮 开始 -->
-					<li>
-						<div class="layui-form-item">
-							<button id="zyc_btn_search" class="layui-btn"><i class="iconfont iconchazhao"></i></button>
-						</div>
-					</li>
-					<!-- 页面内容：头部——查询按钮 结束 -->
-				</ul>
-				<!-- 页面内容：头部——查询框 结束 -->
-				<!-- 页面内容：头部——按钮组 开始 -->
-				<ul class="zyc_clear zyc_handle">
-					<li><button id="zyc_add" class="layui-btn layui-btn-normal"><i class="iconfont iconxinzeng"></i>添加日志</button></li>
-				</ul>
-				<!-- 页面内容：头部——按钮组 结束 -->
-				<!-- 页面内容：头部——结束 -->
-				<!-- 页面内容：列表绑定——开始 -->
-				<div class="zyc_table">
-					<table id="demo" lay-filter="test"></table>
+		<div class="planBlock">
+			<div class="topBtn">
+				<div class="addicon">
+					<i class="left iconfont icon-jihua"></i>
+					<div class="left"> 工作计划</div>
 				</div>
-				<!-- 页面内容：列表绑定——结束 -->
+			</div>
+			<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+				<ul class="layui-tab-title">
+					<li id="${pageContext.request.contextPath}/sevenDaily/selfDay" class="layui-this">日报</li>
+					<li id="${pageContext.request.contextPath}/sevenDaily/selfWeek">周报</li>
+					<li id="${pageContext.request.contextPath}/sevenDaily/selfMonth">月报</li>
+				</ul>
+				<div class="layui-tab-content">
+					<div class="layui-tab-item layui-show" style="height: 500px">
+						<iframe style="height:500px !important" id="open" class="planIf" name="" width="100%" height="100%" frameborder="0" src="${pageContext.request.contextPath}/sevenDaily/selfDay"></iframe>
+					</div>
+				</div>
 			</div>
 		</div>
 		<!-- 页面内容——结束 -->
+		<!-- 列表：操作按钮绑定——开始 -->
+		<script type="text/html" id="tool">
+			<a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="detail">查看</a>
+		</script>
+		<!-- 列表：操作按钮绑定——结束 -->
 		<!-- jquery文件 -->
 		<script src="${pageContext.request.contextPath}/static/js/common/jquery.min.js"></script>
 		<!-- layui框架js文件 -->
 		<script src="${pageContext.request.contextPath}/static/js/common/layui/layui.all.js"></script>
-		<!-- 页面操作js文件 -->
-		<script src="${pageContext.request.contextPath}/static/js/workreport/load.js"></script>
 		<script>
-			var SCOPE = {
-				'table_url': '${pageContext.request.contextPath}/sevenDaily/getSelfDailyList', //列表数据查询来源（json文件或接口地址，可自行修改）；模糊搜索查询接口地址（menu指当前控制器，selects指查询方法，可自行修改）
-				'add_url': '${pageContext.request.contextPath}/sevenDaily/toAdd',
-			}
+			
+			layui.use(['laydate','form','table','layer','element'], function(){
+				var laydate = layui.laydate;
+				var form    = layui.form;
+				var table   = layui.table;
+				var layer   = layui.layer;
+				var element = layui.element;
+					//执行一个laydate实例
+				laydate.render({
+					elem: '#date' //指定元素
+				});
+				var url='${pageContext.request.contextPath}/sevenDaily/getSelfPlanList';
+				search(url);
+				planIf();
+				element.on('tab(docDemoTabBrief)', function(data){
+					var str=$(this).attr('id')
+					var url=str
+					$('.planIf').attr('src',url)
+				});
+				form.on('submit(search)',function(data){
+					var date  = data.field.rDate;
+					var title = data.field.rTitle;
+					var str=url+'?dpDate='+date+'&dpEid='+title;
+					search(str);
+					return false;
+				})
+				table.on('tool(test)', function(obj){
+					var data = obj.data;
+					var url='check.html?id='+data.id;
+					if(obj.event === 'detail'){
+						layer.open({
+							type: 2,
+							content:url,
+							area : ['1200px', '800px'],
+							maxmin : true,
+							title : '查看报告'
+						})
+					}
+				});
+				function search(url){
+					table.render({
+						elem: '#demo'
+						,height: 418
+						,url:url
+						,page: true
+						,cols: [[ //表头
+								{field: 'id', title: 'ID', width:'5%', sort: true}
+								,{field: 'dSid', title: '员工级别', width:'10%'}
+								,{field: 'dDate', title: '工作计划日期', width:'20%'}
+								,{field: 'dWork', title: '工作计划内容', width:'60%'} ,
+								,{field: 'classify', title: '操作',toolbar:"#tool", width:'5%'}
+							]]
+					})
+				}
+				function planIf(){
+					$(".planIf").load(function () {
+						var mainheight = $(this).contents().find("body").height() + 30;
+						$(this).height(mainheight);
+					});
+				}
+			});
+			
 			//关闭所有弹框，并重新加载当前页面
 			function cloae(){
 				layer.closeAll();

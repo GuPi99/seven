@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ally.sevenaccount.bean.SevenAccount;
 import com.ally.sevendaily.bean.SevenDaily;
 import com.ally.sevendaily.service.SevenDailyService;
+import com.ally.sevendailyplan.bean.SevenDailyPlan;
 import com.ally.util.ArchivesLog;
 import com.github.pagehelper.PageInfo;
 
@@ -26,14 +27,6 @@ public class SevenDailyController {
 	@Autowired
 	private SevenDailyService sevenDailyService;
 
-	/*
-	 * 跳转到添加页
-	 */
-	@RequestMapping("/toAdd")
-	public String toAdd() {
-		return "view/sevenDaily/sevenDaily-add";
-	}
-	
 	/*
 	 * 跳转到列表页
 	 */
@@ -50,12 +43,53 @@ public class SevenDailyController {
 		return "view/sevenDaily/trend";
 	}
 
+	
 	/*
-	 * 跳转到列表页
+	 * 跳转到日报添加页
+	 */
+	@RequestMapping("/toDayAdd")
+	public String toAdd() {
+		return "view/sevenDaily/sevenDaily-dayAdd";
+	}
+	
+	/*
+	 * 跳转到日查看页
+	 */
+	@RequestMapping("/toDaySelect")
+	public String toDaySelect() {
+		return "view/sevenDaily/day-select";
+	}
+	
+	/*
+	 * 跳转到个人列表页
 	 */
 	@RequestMapping("/selfIndex")
 	public String selfIndex() {
 		return "view/sevenDaily/self-index";
+	}
+	
+	/*
+	 * 跳转到个人日列表页
+	 */
+	@RequestMapping("/selfDay")
+	public String selfDay() {
+		return "view/sevenDaily/self-day";
+	}
+	
+	/*
+	 * 跳转到日列表页
+	 */
+	@RequestMapping("/AllDay")
+	public String AllDay() {
+		return "view/sevenDaily/all-day";
+	}
+	
+	/*
+	 * 跳转到个人日查看页
+	 */
+	@RequestMapping("/toDaySelfSelect")
+	public String toDaySelfSelect() {
+		return "view/sevenDaily/day-selectself";
 	}
 	
 	/*
@@ -94,20 +128,31 @@ public class SevenDailyController {
 			return map;
 		}
 	}
+	
+	 /* 查看员工日常工作计划
+		 */
+		@ResponseBody
+		@RequestMapping(value = "/getSelectDay", method = RequestMethod.GET)
+		public Map<String, Object> selectSevenDailyById(Integer id) {
+			Map<String, Object> map = new HashMap<>();
+			SevenDaily sevenDaily = sevenDailyService.selectSevenDailyById(id);
+			map.put("data", sevenDaily);
+			return map;
+		}
 
 	/*
 	 * 分页查询员工工作报告
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/getSevenDailyList", method = RequestMethod.GET)
-	public Map<String, Object> getSevenDailyList(@RequestParam(required = true, defaultValue = "1") Integer page,
-			Integer limit, Integer dSid, Integer dType, String dDate) {
+	@RequestMapping(value = "/getAllDayList", method = RequestMethod.GET)
+	public Map<String, Object> getAllDayList(@RequestParam(required = true, defaultValue = "1") Integer page,
+			Integer limit, Integer dSid, String dDate) {
 		Map<String, Object> map = new HashMap<>();
-		PageInfo<SevenDaily> list = sevenDailyService.getSevenDailyList(page, limit, dSid,dType, dDate);
-		map.put("status", 0);
+		PageInfo<SevenDaily> list = sevenDailyService.getDayDailyList(page, limit, dSid, dDate);
+		map.put("code", 0);
 		map.put("message", "成功");
 		map.put("data", list.getList());
-		map.put("total", list.getTotal());
+		map.put("count", list.getTotal());
 		return map;
 	}
 	
@@ -115,20 +160,20 @@ public class SevenDailyController {
 	 * 分页查询自己工作报告
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/getSelfDailyList", method = RequestMethod.GET)
-	public Map<String, Object> getSelfPlanList(@RequestParam(required = true, defaultValue = "1") Integer page,
-			Integer limit, String dDate,Integer dType, HttpSession session,Integer type) {
+	@RequestMapping(value = "/getSelfDayList", method = RequestMethod.GET)
+	public Map<String, Object> getSelfDayList(@RequestParam(required = true, defaultValue = "1") Integer page,
+			Integer limit, String dDate, HttpSession session) {
 		Map<String, Object> map = new HashMap<>();
 		SevenAccount sevenAccount = (SevenAccount) session.getAttribute("account");
-		PageInfo<SevenDaily> list = sevenDailyService.getSevenDailyList(page, limit, sevenAccount.getaSid(),dType,dDate);
+		PageInfo<SevenDaily> list = sevenDailyService.getDayDailyList(page, limit, sevenAccount.getaSid(),dDate);
 		if (list==null) {
 			map.put("data", null);
-			map.put("total", null);
+			map.put("count", null);
 		}else {
 			map.put("data", list.getList());
-			map.put("total", list.getTotal());
+			map.put("count", list.getTotal());
 		}
-		map.put("status", 0);
+		map.put("code", 0);
 		map.put("message", "成功");
 		return map;
 	}

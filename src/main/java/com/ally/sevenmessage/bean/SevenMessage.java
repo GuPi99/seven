@@ -6,6 +6,8 @@ public class SevenMessage {
     private Integer mType;
 
     private String mName;
+    
+    private String mDesc;
 
     public Integer getId() {
         return id;
@@ -30,4 +32,14 @@ public class SevenMessage {
     public void setmName(String mName) {
         this.mName = mName == null ? null : mName.trim();
     }
+
+	public String getmDesc() {
+		return mDesc;
+	}
+
+	public void setmDesc(String mDesc) {
+		this.mDesc = mDesc;
+	}
+    
+    
 }

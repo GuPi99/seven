@@ -10,6 +10,10 @@
 		<result column="s_email" property="sEmail" jdbcType="VARCHAR" />
 		<result column="s_address" property="sAddress" jdbcType="VARCHAR" />
 		<result column="s_state" property="sState" jdbcType="INTEGER" />
+		<result column="office_phone" property="officePhone" jdbcType="VARCHAR" />
+		<result column="fax_num" property="faxNum" jdbcType="VARCHAR" />
+		<result column="s_title" property="sTitle" jdbcType="VARCHAR" />
+		<result column="s_duty" property="sDuty" jdbcType="VARCHAR" />
 	</resultMap>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from
@@ -20,12 +24,13 @@
 		insert into seven_staff (id,
 		s_name, s_sex,
 		s_date_birth, s_phone, s_email,
-		s_address, s_state)
+		s_address, s_state,office_phone,fax_num,s_title,s_duty)
 		values (#{id,jdbcType=INTEGER}, #{sName,jdbcType=VARCHAR},
-		#{sSex,jdbcType=INTEGER},
-		#{sDateBirth,jdbcType=VARCHAR},
+		#{sSex,jdbcType=INTEGER},#{sDateBirth,jdbcType=VARCHAR},
 		#{sPhone,jdbcType=VARCHAR}, #{sEmail,jdbcType=VARCHAR},
-		#{sAddress,jdbcType=VARCHAR}, #{sState,jdbcType=INTEGER})
+		#{sAddress,jdbcType=VARCHAR}, #{sState,jdbcType=INTEGER},
+		#{officePhone,jdbcType=VARCHAR},#{faxNum,jdbcType=VARCHAR},
+		#{sTitle,jdbcType=VARCHAR},#{sDuty,jdbcType=VARCHAR})
 	</insert>
 	<update id="updateByPrimaryKey" parameterType="com.ally.sevenstaff.bean.SevenStaff">
 		update seven_staff
@@ -35,27 +40,28 @@
 		s_phone = #{sPhone,jdbcType=VARCHAR},
 		s_email = #{sEmail,jdbcType=VARCHAR},
 		s_address =#{sAddress,jdbcType=VARCHAR},
-		s_state = #{sState,jdbcType=INTEGER}
+		s_state = #{sState,jdbcType=INTEGER},
+		office_phone=#{officePhone,jdbcType=VARCHAR},
+		fax_num=#{faxNum,jdbcType=VARCHAR},
+		s_title=#{sTitle,jdbcType=VARCHAR},
+		s_duty=#{sDuty,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 	<update id="updateSevenStaffState" parameterType="java.lang.Integer">
 		update
 		seven_staff
 		set s_state = #{sState}
-		where id =
-		#{id}
+		where id = #{id}
 	</update>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
 		select id, s_name, s_sex, s_date_birth, s_phone,
-		s_email, s_address, s_state
+		s_email, s_address, s_state,office_phone,fax_num,s_title,s_duty
 		from seven_staff
-		where id =
-		#{id,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
 	</select>
 	<select id="selectAll" resultMap="BaseResultMap">
-		select id, s_name, s_sex,
-		s_date_birth, s_phone, s_email, s_address, s_state
+		select id, s_name
 		from seven_staff
 	</select>
 	<select id="selectName" resultType="java.lang.String">
@@ -81,14 +87,5 @@
 	<select id="selectNoAccount" resultMap="BaseResultMap">
 		select id, s_name
 		from seven_staff where id not in (select a_sid from seven_account)
-	</select>
-	<select id="getBookList" resultMap="BaseResultMap">
-		select id, s_name, s_phone, s_email
-		from seven_staff
-		<where>
-			<if test="sName != null and sName !=''">
-				and s_name like #{sName}
-			</if>
-		</where>
 	</select>
 </mapper>

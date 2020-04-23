@@ -20,6 +20,14 @@ public class SevenStaff {
     private String sex;
     
     private String state;
+    
+    private String officePhone;
+    
+    private String faxNum;
+    
+    private String sTitle;
+    
+    private String sDuty;
 
     public Integer getId() {
         return id;
@@ -99,6 +107,38 @@ public class SevenStaff {
 
 	public void setState(String state) {
 		this.state = state;
+	}
+
+	public String getOfficePhone() {
+		return officePhone;
+	}
+
+	public void setOfficePhone(String officePhone) {
+		this.officePhone = officePhone;
+	}
+
+	public String getFaxNum() {
+		return faxNum;
+	}
+
+	public void setFaxNum(String faxNum) {
+		this.faxNum = faxNum;
+	}
+
+	public String getsTitle() {
+		return sTitle;
+	}
+
+	public void setsTitle(String sTitle) {
+		this.sTitle = sTitle;
+	}
+
+	public String getsDuty() {
+		return sDuty;
+	}
+
+	public void setsDuty(String sDuty) {
+		this.sDuty = sDuty;
 	}
     
     

@@ -13,8 +13,8 @@ public interface SevenDailyService {
 
 	SevenDaily selectSevenDailyById(Integer id);
 
-	PageInfo<SevenDaily> getSevenDailyList(Integer page, Integer limit, Integer dSid, Integer dType, String dDate);
-
 	PageInfo<SevenDaily> getTrendList(Integer page, Integer limit, Integer oSid);
+
+	PageInfo<SevenDaily> getDayDailyList(Integer page, Integer limit, Integer dSid, String dDate);
 
 }
