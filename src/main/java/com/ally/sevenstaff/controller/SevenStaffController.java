@@ -113,6 +113,18 @@ public class SevenStaffController {
 			map.put("msg", "员工住址不能为空");
 			return map;
 		}
+		if (StringUtils.isEmpty(sevenStaff.getOfficePhone())) {
+			sevenStaff.setOfficePhone("暂无数据");
+		}
+		if (StringUtils.isEmpty(sevenStaff.getFaxNum())) {
+			sevenStaff.setFaxNum("暂无数据");
+		}
+		if (StringUtils.isEmpty(sevenStaff.getsTitle())) {
+			sevenStaff.setsTitle("暂无数据");
+		}
+		if (StringUtils.isEmpty(sevenStaff.getsDuty())) {
+			sevenStaff.setsDuty("暂无数据");
+		}
 		Boolean result = sevenStaffService.addSevenStaff(sevenStaff);
 		if (result) {
 			map.put("status", 0);
@@ -263,7 +275,10 @@ public class SevenStaffController {
 		SevenAccount sevenAccount = (SevenAccount) session.getAttribute("account");
 		sevenStaff= sevenStaffService.selectSevenStaffById(sevenAccount.getaSid());
 		SevenOffice sevenOffice=sevenOfficeService.selectBefore(sevenStaff.getId());
-		SevenMessage sevenMessage = sevenMessageService.selectSevenMessageById(sevenOffice.getoPost());
+		SevenMessage sevenMessage =null;
+		if (sevenOffice!=null) {
+			 sevenMessage = sevenMessageService.selectSevenMessageById(sevenOffice.getoPost());
+		} 
 		SevenPrint sevenPrint = sevenPrintService.selectSevenPrint(sevenAccount.getaPid());
 		StaffMsg sMsg =new StaffMsg();
 		sMsg.setSevenMessage(sevenMessage);

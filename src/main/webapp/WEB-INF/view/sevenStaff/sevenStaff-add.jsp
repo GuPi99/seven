@@ -65,6 +65,13 @@
 						</div>
 						<div class="zyc_verify" data-name="s_address"></div>
 					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label"><span>*</span>职责描述 : </label>
+						<div class="layui-input-block">
+							<input type="text" name="sDuty" placeholder="请输入职责描述" class="layui-input">
+						</div>
+						<div class="zyc_verify" data-name="s_address"></div>
+					</div>
 				</div>
 				<div class="layui-col-sm4">
 					<div class="layui-form-item">
@@ -103,6 +110,13 @@
 						<label class="layui-form-label"><span>*</span>现住址 : </label>
 						<div class="layui-input-block">
 							<input type="text" name="sAddress" placeholder="请输入员工现住址" class="layui-input">
+						</div>
+						<div class="zyc_verify" data-name="s_address"></div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label"><span>*</span>职称 : </label>
+						<div class="layui-input-block">
+							<input type="text" name="sTitle" placeholder="请输入员工职称" class="layui-input">
 						</div>
 						<div class="zyc_verify" data-name="s_address"></div>
 					</div>

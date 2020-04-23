@@ -16,7 +16,7 @@
 		<div class="header">
 			<div class="headName"> 
 				<span>Alice:</span>
-				<span class="position" style="color: #0080FF;"></span>
+				<span class="position" style="color: #0080FF;">暂无数据</span>
 			</div>
 		</div>
 		<div class="bodyer">
@@ -28,7 +28,7 @@
 					<div>
 						<div class="headGrade">
 							<span>姓名:</span>
-							<span class="useType"></span>
+							<span class="useType">暂无数据</span>
 						</div>
 					</div>
 				</div>
@@ -38,38 +38,38 @@
 				<ul>
 					<li>
 						<span class="column">职称:</span>
-						<span class="useContent" id="title">***</span>
+						<span class="useContent" id="title">暂无数据</span>
 					</li>
 					<li>
 						<span class="column">职责描述:</span>
-						<span class="useContent" id="duty">***</span>
+						<span class="useContent" id="duty">暂无数据</span>
 					</li>
 					<li>
 						<span class="column">职位:</span>
-						<span class="useContent" id="position">***</span>
+						<span class="useContent" id="position">暂无数据</span>
 					</li>
 					<li>
 						<span class="column">职位描述:</span>
-						<span class="useContent" id="desc">***</span>
+						<span class="useContent" id="desc">暂无数据</span>
 					</li>
 				</ul>
 				<div class="msgTitle">销售区域</div>
 				<ul>
 					<li>
 						<span class="column">移动电话:</span>
-						<span class="useContent" id="phone">***</span>
+						<span class="useContent" id="phone">暂无数据</span>
 					</li>
 					<li>
 						<span class="column">办公电话:</span>
-						<span class="useContent" id="officePhone">***</span>
+						<span class="useContent" id="officePhone">暂无数据</span>
 					</li>
 					<li>
 						<span class="column">电子邮件:</span>
-						<span class="useContent" id="email">***</span>
+						<span class="useContent" id="email">暂无数据</span>
 					</li>
 					<li>
 						<span class="column">传真:</span>
-						<span class="useContent" id="fax">***</span>
+						<span class="useContent" id="fax">暂无数据</span>
 					</li>
 				</ul>
 			</div>
@@ -87,17 +87,20 @@
 			success:(function (res) {
 				if(res.status==0){
 					$('.useType').text(res.data.sevenStaff.sName);
-					$('.position').text(res.data.sevenMessage.mName);
 					$('#headImg').attr("src",'${pageContext.request.contextPath}/'+res.data.iUrl);
-					$('#desc').text(res.data.sevenMessage.mDesc);
 					$('#title').text(res.data.sevenStaff.sTitle);
 					$('#duty').text(res.data.sevenStaff.sDuty);
-					$('#position').text(res.data.sevenMessage.mName);
-					$('#post').text(res.data.sevenMessage.mName);
 					$('#phone').text(res.data.sevenStaff.sPhone);
 					$('#officePhone').text(res.data.sevenStaff.officePhone);
 					$('#email').text(res.data.sevenStaff.sEmail);
 					$('#fax').text(res.data.sevenStaff.faxNum);
+					if(res.data.sevenMessage!=null){
+						$('#position').text(res.data.sevenMessage.mName);
+						$('#post').text(res.data.sevenMessage.mName);
+						$('.position').text(res.data.sevenMessage.mName);
+						$('#desc').text(res.data.sevenMessage.mDesc);
+					}
+					
 				}
 			})
 		})
