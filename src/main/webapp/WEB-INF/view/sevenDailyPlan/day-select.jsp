@@ -24,14 +24,7 @@
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/form/form.css" />
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/fonts/iconfont.css"/>
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/plan/adday.css"/>
-		<style>
-			.desc{
-				padding: 10px;
-				border: 1px solid #D2D2D2;
-				margin-left: 15px;
-				min-height: 100px;
-			}
-		</style>
+		
 </head>
 <body>
 <!-- 页面内容——开始 -->
@@ -61,7 +54,7 @@
 					<label class="layui-form-label">
 						<div class="titleBg"><span>*</span>计划内容 : </div>
 					</label>
-					<div class="desc" id='desc'>
+					<div  class="layui-input-block" class="desc"  id="desc" style="width: 480px;border: 1px solid #ededed;line-height: 30px;padding: 0 10px;height: 150px">
 					
 					</div>
 				</div>
